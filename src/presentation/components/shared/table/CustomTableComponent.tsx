@@ -1,8 +1,8 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 
-import { FC } from "react";
-import { Inventario } from "../../../../datasource/entities/responses/inventario_response";
-import { capitalize } from "../../../../config/extensions/string_extension";
+import { FC } from 'react';
+import { Inventario } from '../../../../datasource/entities/responses/inventario_response';
+import { capitalize } from '../../../../config/extensions/string_extension';
 
 const columns: string[] = [
   'Codigo',
@@ -13,9 +13,9 @@ const columns: string[] = [
   'Fecha de Creacion',
 ];
 interface Props {
-    items: Inventario[];
+  items: Inventario[];
 }
-export const CustomTableComponent:FC<Props> = ({items}) => {
+export const CustomTableComponent: FC<Props> = ({ items }) => {
   return (
     <>
       <table className="border-collapse w-full mt-10">
@@ -33,28 +33,28 @@ export const CustomTableComponent:FC<Props> = ({items}) => {
           </tr>
         </thead>
         <tbody>
-            {
-                items.map((e,i) => {
-                    const createdDate = new Date(e.createdAt.toLocaleString())
-                    return (
-                        <tr key={i} className=" cursor-pointer bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                         
-                          {e.id}
-                        </td>
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        
-                          {capitalize(e.nombre_producto)}
-                        </td>
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        
-                         {e.cantidad}
-                        </td>
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span style={{backgroundColor: e.categoria.color}} className='rounded  py-1 px-3 text-xs font-bold'>
-                            {capitalize(e.categoria.nombre)}
-                          </span>
-                          {/* <a
+          {items.map((e, i) => {
+            const createdDate = new Date(e.createdAt.toLocaleString());
+            return (
+              <tr
+                key={i}
+                className=" cursor-pointer bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                  {e.id}
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                  {capitalize(e.nombre_producto)}
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                  {e.cantidad}
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                  <span
+                    style={{ backgroundColor: e.categoria.color }}
+                    className="rounded  py-1 px-3 text-xs font-bold">
+                    {capitalize(e.categoria.nombre)}
+                  </span>
+                  {/* <a
                             href="#"
                             className="text-blue-400 hover:text-blue-600 underline">
                             Edit
@@ -64,19 +64,16 @@ export const CustomTableComponent:FC<Props> = ({items}) => {
                             className="text-blue-400 hover:text-blue-600 underline pl-6">
                             Remove
                           </a> */}
-                        </td>
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                         
-                          {capitalize(e.usuario.nombre)}
-                        </td>
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            {createdDate.toLocaleString()}
-                        </td>
-                      </tr>
-                    )
-                })
-            }
-       
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                  {capitalize(e.usuario.nombre)}
+                </td>
+                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                  {createdDate.toLocaleString()}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </>

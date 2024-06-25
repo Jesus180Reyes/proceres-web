@@ -2,45 +2,34 @@
 import { CustomButton } from '../../components/shared/button/CustomButton';
 import { useEffect, useState } from 'react';
 import 'react-responsive-modal/styles.css';
-import {Item} from '../../components/shared/dropdown/CustomDropdownComponent';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
 import { Api } from '../../../config/api/api';
-import { Inventario, InventarioResponse } from '../../../datasource/entities/responses/inventario_response';
+import {
+  Inventario,
+  InventarioResponse,
+} from '../../../datasource/entities/responses/inventario_response';
 
-const items: Item[] = [
-  {
-    id: 1,
-    title: 'Cocina',
-  },
-  {
-    id: 2,
-    title: 'Restaurante',
-  },
-];
 const HomePage = () => {
   const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>();
-  
-  const getData = async(): Promise<InventarioResponse> => {
-    try {
-      const resp = await Api.instance.get<InventarioResponse>('/api/inventario/');
-    const data = resp.data;
-    setinventarioResponse(data.inventario);
-    console.log(data.inventario)
-    return data;
-    } catch (error: any) {
-      console.log(error)
-      throw new Error(error.message)
-    }
 
-  }
+  const getData = async (): Promise<InventarioResponse> => {
+    try {
+      const resp =
+        await Api.instance.get<InventarioResponse>('/api/inventario/');
+      const data = resp.data;
+      setinventarioResponse(data.inventario);
+      console.log(data.inventario);
+      return data;
+    } catch (error: any) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  };
   useEffect(() => {
     getData();
-  
-    
   }, []);
- 
-  
+
   const [open, setOpen] = useState<boolean>(false);
 
   const onOpenModal = () => setOpen(true);
@@ -60,7 +49,7 @@ const HomePage = () => {
           </div>
         </div>
         <CustomTableComponent items={inventarioResponse ?? []} />
-       <HomeModal isOpen={open} onClose={onCloseModal} items={items}/>
+        <HomeModal isOpen={open} onClose={onCloseModal} />
       </div>
     </>
   );
