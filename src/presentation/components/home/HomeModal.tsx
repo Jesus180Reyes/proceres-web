@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Modal from 'react-responsive-modal';
-import { OutlineButtonComponent } from '../shared/button/OutlineButtonComponent';
 import {
   CustomDropdownComponent,
   Item,
@@ -11,12 +10,16 @@ import { Api } from '../../../config/api/api';
 import { CategoriaResponse } from '../../../datasource/entities/responses/inventario_response';
 import { capitalize } from '../../../config/extensions/string_extension';
 import { useForm } from '../../hooks/form/useForm';
+import { PrimaryButton } from '../shared/button/PrimaryButton';
+import { Status } from '../../../datasource/entities/status';
+import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
+  const [status, setstatus] = useState<Status>(Status.notStarted);
   const { values, handleChange, resetForm } = useForm({
     nombre_producto: '',
     cantidad: 0,
@@ -38,6 +41,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
   };
   const createProduct = async () => {
     try {
+      setstatus(Status.inProgress)
       const resp = await Api.instance.post('/api/inventario', {
         nombre_producto: values.nombre_producto,
         cantidad: values.cantidad,
@@ -47,8 +51,11 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
       });
       resetForm();
       console.log(resp);
-    } catch (error) {
-      console.log(error);
+      setstatus(Status.done);
+      CustomModals.showCustomModal('Producto agregado al inventario Exitosamente!!', 'success');
+    } catch (error:any) {
+      setstatus(Status.notStarted);
+      CustomModals.showCustomModal(`Ups! Error inesperado ${error.message}`, 'error');
     }
   };
   useEffect(() => {
@@ -56,7 +63,6 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
   }, []);
   const onSubmit = async () => {
     await createProduct();
-    console.log({ values });
   };
 
   return (
@@ -100,8 +106,9 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
           onChange={handleChange}
           value={values.observacion_general}
         />
-        <OutlineButtonComponent
+        <PrimaryButton
           onClick={onSubmit}
+          disabled={status === Status.inProgress}
           title={'Enviar Producto al Inventario'}
         />
       </Modal>
