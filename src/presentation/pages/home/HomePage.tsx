@@ -9,20 +9,23 @@ import {
   Inventario,
   InventarioResponse,
 } from '../../../datasource/entities/responses/inventario_response';
+import { Status } from '../../../datasource/entities/status';
 
 const HomePage = () => {
+  const [status, setstatus] = useState<Status>(Status.notStarted);
   const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>();
 
   const getData = async (): Promise<InventarioResponse> => {
     try {
+      setstatus(Status.inProgress)
       const resp =
-        await Api.instance.get<InventarioResponse>('/api/inventario/');
+      await Api.instance.get<InventarioResponse>('/api/inventario/');
       const data = resp.data;
       setinventarioResponse(data.inventario);
-      console.log(data.inventario);
+      setstatus(Status.done)
       return data;
     } catch (error: any) {
-      console.log(error);
+      setstatus(Status.notStarted)
       throw new Error(error.message);
     }
   };
@@ -48,7 +51,7 @@ const HomePage = () => {
             />
           </div>
         </div>
-        <CustomTableComponent items={inventarioResponse ?? []} />
+        <CustomTableComponent isLoading={status === Status.inProgress} items={inventarioResponse ?? []} />
         <HomeModal isOpen={open} onClose={onCloseModal} />
       </div>
     </>

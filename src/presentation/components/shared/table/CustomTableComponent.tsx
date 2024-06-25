@@ -3,6 +3,7 @@
 import { FC } from 'react';
 import { Inventario } from '../../../../datasource/entities/responses/inventario_response';
 import { capitalize } from '../../../../config/extensions/string_extension';
+import { IsLoadingPage } from '../loading/IsLoadingPage';
 
 const columns: string[] = [
   'Codigo',
@@ -14,8 +15,10 @@ const columns: string[] = [
 ];
 interface Props {
   items: Inventario[];
+  isLoading: boolean 
 }
-export const CustomTableComponent: FC<Props> = ({ items }) => {
+export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
+  if(isLoading) return (<IsLoadingPage/>)
   return (
     <>
       <table className="border-collapse w-full mt-10">
