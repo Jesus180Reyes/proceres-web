@@ -76,6 +76,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
           </p>
         </div>
         <CustomTextfieldComponent
+          disabled={status === Status.inProgress}
           placeholder="Ejem: Café"
           title={'Ingresa el Nombre del Producto *'}
           name="nombre_producto"
@@ -83,6 +84,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
           value={values.nombre_producto}
         />
         <CustomTextfieldComponent
+          disabled={status === Status.inProgress}
           typeInput="number"
           title={'Introduce la cantidad de este producto. *'}
           name="cantidad"
