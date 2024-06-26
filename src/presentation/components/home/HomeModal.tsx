@@ -30,6 +30,12 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
     observacion_general: '',
   });
   const [currentCategorie, setCurrentCategorie] = useState<Item>();
+  const onCloseModal = (): void => {
+    onClose();
+    resetForm();
+    setHasInputError(false);
+    setCurrentCategorie(undefined);
+  }
 
   const createProduct = async () => {
     if (values.nombre_producto.length === 0 || values.cantidad <= 0)
@@ -68,7 +74,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal open={isOpen} onClose={onClose} center>
+      <Modal open={isOpen} onClose={onCloseModal} center>
         <div className="m-2 mt-5 mb-4">
           <h2 className="font-semibold">Ingresa los datos Requeridos</h2>
           <p className="italic text-sm text-start">
