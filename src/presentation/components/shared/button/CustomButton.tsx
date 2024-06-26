@@ -7,6 +7,18 @@ interface Props {
   title: string;
   onClick: () => void;
 }
+/**
+ * CustomButton es un componente de botón reutilizable para aplicaciones React,
+ * permitiendo la personalización de los márgenes y el texto del botón usando clases de Tailwind CSS.
+ *
+ * @param {string} [marginleft='ml-0'] - Clase de Tailwind CSS opcional para el margen izquierdo del botón.
+ * @param {string} [marginTop='mt-0'] - Clase de Tailwind CSS opcional para el margen superior del botón.
+ * @param {string} [marginRight='mr-0'] - Clase de Tailwind CSS opcional para el margen derecho del botón.
+ * @param {string} title - El texto que se mostrará dentro del botón.
+ * @param {void} onClick - La función que se ejecutará cuando se haga clic en el botón.
+ *
+ * @returns {JSX.Element} Un botón estilizado con las propiedades dadas.
+ */
 export const CustomButton: FC<Props> = ({
   onClick,
   marginRight = 'ml-0',

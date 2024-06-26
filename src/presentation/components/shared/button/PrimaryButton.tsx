@@ -5,6 +5,15 @@ interface Props {
   onClick?: () => void;
   disabled?: boolean;
 }
+/**
+ * PrimaryButton es un componente de botón reutilizable para aplicaciones React.
+ *
+ * @param {string} title - El texto que se mostrará dentro del botón.
+ * @param {void} [onClick] - La función que se ejecutará cuando se haga clic en el botón.
+ * @param {boolean} [disabled] - Indica si el botón está deshabilitado. Cuando está deshabilitado, muestra "Cargando...".
+ *
+ * @returns {JSX.Element} Un botón estilizado con las propiedades dadas.
+ */
 export const PrimaryButton: FC<Props> = ({ title, onClick, disabled }) => {
   return (
     <button

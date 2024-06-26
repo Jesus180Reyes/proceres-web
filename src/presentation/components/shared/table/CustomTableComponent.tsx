@@ -17,6 +17,15 @@ interface Props {
   items: Inventario[];
   isLoading: boolean;
 }
+/**
+ * CustomTableComponent es un componente de tabla reutilizable para aplicaciones React,
+ * diseñado para mostrar una lista de inventario con columnas personalizadas.
+ *
+ * @param {Inventario[]} items - Array de objetos de inventario a mostrar en la tabla.
+ * @param {boolean} isLoading - Indica si los datos están cargando. Si es true, muestra la página de carga.
+ *
+ * @returns {JSX.Element} Una tabla estilizada con las propiedades dadas.
+ */
 export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
   if (isLoading) return <IsLoadingPage />;
   return (

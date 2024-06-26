@@ -4,8 +4,14 @@ import App from '../../App';
 import { lazy } from 'react';
 
 const HomePage = lazy(() => import('../../presentation/pages/home/HomePage'));
-
+/**
+ * RouterAdapter es una clase que configura el enrutador de la aplicación usando react-router-dom.
+ * Define las rutas principales y las rutas secundarias de la aplicación.
+ */
 export class RouterAdapter {
+   /**
+   * @static {Router} router - El enrutador de la aplicación configurado con las rutas principales y secundarias.
+   */
   static router = createBrowserRouter([
     {
       path: '/',

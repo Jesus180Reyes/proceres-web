@@ -5,6 +5,16 @@ interface Props {
   onClick: () => void;
   disabled?: boolean;
 }
+/**
+ * OutlineButtonComponent es un componente de botón reutilizable para aplicaciones React,
+ * con un estilo de borde y texto azul, y una opción para estar deshabilitado.
+ *
+ * @param {string} title - El texto que se mostrará dentro del botón.
+ * @param {void} onClick - La función que se ejecutará cuando se haga clic en el botón.
+ * @param {boolean} [disabled=false] - Indica si el botón está deshabilitado. Cuando está deshabilitado, muestra "Cargando...".
+ *
+ * @returns {JSX.Element} Un botón estilizado con las propiedades dadas.
+ */
 export const OutlineButtonComponent: FC<Props> = ({
   title,
   onClick,
