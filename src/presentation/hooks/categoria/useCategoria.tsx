@@ -12,7 +12,6 @@ export const useCategoria = () => {
       const data = resp.data;
       setCategories(data);
     } catch (error: any) {
-      console.log(error);
       throw new Error(`Algo paso ${error.message}`);
     }
   };
