@@ -20,7 +20,7 @@ interface Props {
 }
 export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
-  const [hasInputError, setHasInputError] = useState<boolean>(false)
+  const [hasInputError, setHasInputError] = useState<boolean>(false);
   const { values, handleChange, resetForm } = useForm({
     nombre_producto: '',
     cantidad: 0,
@@ -33,18 +33,22 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
       const resp = await Api.instance.get<CategoriaResponse>('/api/categoria/');
       const data = resp.data;
       setCategories(data);
-
     } catch (error: any) {
       console.log(error);
       throw new Error(`Algo paso ${error.message}`);
     }
   };
   const createProduct = async () => {
-    if(values.nombre_producto.length === 0 || values.cantidad <= 0 )return setHasInputError(true);
-    if(currentCategorie === undefined)return CustomModals.showCustomModal('La Categoria del producto es Obligatoria', 'info');
+    if (values.nombre_producto.length === 0 || values.cantidad <= 0)
+      return setHasInputError(true);
+    if (currentCategorie === undefined)
+      return CustomModals.showCustomModal(
+        'La Categoria del producto es Obligatoria',
+        'info'
+      );
     try {
-      setstatus(Status.inProgress)
-       await Api.instance.post('/api/inventario', {
+      setstatus(Status.inProgress);
+      await Api.instance.post('/api/inventario', {
         nombre_producto: values.nombre_producto,
         cantidad: values.cantidad,
         observacion_general: values.observacion_general,
@@ -52,18 +56,24 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
         user_id: 1,
       });
       resetForm();
-      setHasInputError(false)
+      setHasInputError(false);
       setCurrentCategorie(undefined);
       setstatus(Status.done);
-      CustomModals.showCustomModal('Producto agregado al inventario Exitosamente!!', 'success');
-    } catch (error:any) {
+      CustomModals.showCustomModal(
+        'Producto agregado al inventario Exitosamente!!',
+        'success'
+      );
+    } catch (error: any) {
       setstatus(Status.notStarted);
-      CustomModals.showCustomModal(`Ups! Error inesperado ${error.message}`, 'error');
+      CustomModals.showCustomModal(
+        `Ups! Error inesperado ${error.message}`,
+        'error'
+      );
     }
   };
   useEffect(() => {
     getCategories();
-  }, );
+  });
   const onSubmit = async () => {
     await createProduct();
   };
@@ -80,8 +90,8 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
         </div>
         <CustomTextfieldComponent
           disabled={status === Status.inProgress}
-          error={values.nombre_producto.length <=0 &&hasInputError}
-          errorMsg='El nombre de Producto es Obligatorio'
+          error={values.nombre_producto.length <= 0 && hasInputError}
+          errorMsg="El nombre de Producto es Obligatorio"
           placeholder="Ejem: Café"
           title={'Ingresa el Nombre del Producto *'}
           name="nombre_producto"
@@ -90,8 +100,8 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
         />
         <CustomTextfieldComponent
           disabled={status === Status.inProgress}
-          errorMsg='La Cantidad de Producto es Obligatorio'
-          error={values.cantidad <=0 &&hasInputError}
+          errorMsg="La Cantidad de Producto es Obligatorio"
+          error={values.cantidad <= 0 && hasInputError}
           typeInput="number"
           title={'Introduce la cantidad de este producto. *'}
           name="cantidad"
@@ -99,7 +109,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
           value={values.cantidad}
         />
         <CustomDropdownComponent
-        disabled={status === Status.inProgress}
+          disabled={status === Status.inProgress}
           title={'Ingresa la Categoria de Estos Productos'}
           items={
             categories?.categorias.map(e => ({

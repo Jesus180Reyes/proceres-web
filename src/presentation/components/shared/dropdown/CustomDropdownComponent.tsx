@@ -8,7 +8,7 @@ interface Props {
   title: string;
   items: Item[];
   onItemClicked: (item: Item) => void;
-  disabled: boolean
+  disabled: boolean;
 }
 /**
  * Componente de Dropdown personalizado .
@@ -23,7 +23,7 @@ export const CustomDropdownComponent: FC<Props> = ({
   title,
   items,
   onItemClicked,
-  disabled
+  disabled,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currentValueSelected, setCurrentValueSelected] = useState<string>();
@@ -36,7 +36,7 @@ export const CustomDropdownComponent: FC<Props> = ({
     <>
       <div className="">
         <button
-        disabled={disabled}
+          disabled={disabled}
           onClick={() => setIsOpen(!isOpen)}
           id="dropdown-button"
           className="text-left flex justify-between mb-4 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">

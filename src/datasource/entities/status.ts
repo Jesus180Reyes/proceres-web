@@ -1,3 +1,5 @@
-
-
-export enum Status { notStarted , inProgress, done}
+export enum Status {
+  notStarted,
+  inProgress,
+  done,
+}

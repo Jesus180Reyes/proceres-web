@@ -7,9 +7,8 @@ import { IsLoadingPage } from './presentation/components/shared/loading/IsLoadin
 const router = RouterAdapter.router;
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Suspense fallback={<IsLoadingPage/>}>
-      
-    <RouterProvider router={router} />
+    <Suspense fallback={<IsLoadingPage />}>
+      <RouterProvider router={router} />
     </Suspense>
   </React.StrictMode>
 );

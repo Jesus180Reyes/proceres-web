@@ -17,15 +17,15 @@ const HomePage = () => {
 
   const getData = async (): Promise<InventarioResponse> => {
     try {
-      setstatus(Status.inProgress)
+      setstatus(Status.inProgress);
       const resp =
-      await Api.instance.get<InventarioResponse>('/api/inventario/');
+        await Api.instance.get<InventarioResponse>('/api/inventario/');
       const data = resp.data;
       setinventarioResponse(data.inventario);
-      setstatus(Status.done)
+      setstatus(Status.done);
       return data;
     } catch (error: any) {
-      setstatus(Status.notStarted)
+      setstatus(Status.notStarted);
       throw new Error(error.message);
     }
   };
@@ -51,7 +51,10 @@ const HomePage = () => {
             />
           </div>
         </div>
-        <CustomTableComponent isLoading={status === Status.inProgress} items={inventarioResponse ?? []} />
+        <CustomTableComponent
+          isLoading={status === Status.inProgress}
+          items={inventarioResponse ?? []}
+        />
         <HomeModal isOpen={open} onClose={onCloseModal} />
       </div>
     </>

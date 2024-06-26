@@ -15,10 +15,10 @@ const columns: string[] = [
 ];
 interface Props {
   items: Inventario[];
-  isLoading: boolean 
+  isLoading: boolean;
 }
 export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
-  if(isLoading) return (<IsLoadingPage/>)
+  if (isLoading) return <IsLoadingPage />;
   return (
     <>
       <table className="border-collapse w-full mt-10">
