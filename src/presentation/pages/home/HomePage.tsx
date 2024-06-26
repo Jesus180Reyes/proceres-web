@@ -1,38 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CustomButton } from '../../components/shared/button/CustomButton';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
-import { Api } from '../../../config/api/api';
-import {
-  Inventario,
-  InventarioResponse,
-} from '../../../datasource/entities/responses/inventario_response';
 import { Status } from '../../../datasource/entities/status';
+import { useInventario } from '../../hooks/inventario/useInventario';
 
 const HomePage = () => {
-  const [status, setstatus] = useState<Status>(Status.notStarted);
-  const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>();
-
-  const getData = async (): Promise<InventarioResponse> => {
-    try {
-      setstatus(Status.inProgress);
-      const resp =
-        await Api.instance.get<InventarioResponse>('/api/inventario/');
-      const data = resp.data;
-      setinventarioResponse(data.inventario);
-      setstatus(Status.done);
-      return data;
-    } catch (error: any) {
-      setstatus(Status.notStarted);
-      throw new Error(error.message);
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
-
+  const { status, inventarioResponse } = useInventario();
   const [open, setOpen] = useState<boolean>(false);
 
   const onOpenModal = () => setOpen(true);
@@ -47,7 +23,7 @@ const HomePage = () => {
           <div className="mr-5 ">
             <CustomButton
               title={'Agregar Producto al Inventario'}
-              onClick={() => onOpenModal()}
+              onClick={onOpenModal}
             />
           </div>
         </div>

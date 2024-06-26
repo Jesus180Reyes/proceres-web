@@ -5,20 +5,21 @@ import {
   Item,
 } from '../shared/dropdown/CustomDropdownComponent';
 import { CustomTextfieldComponent } from '../shared/input/CustomTextfieldComponent';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Api } from '../../../config/api/api';
-import { CategoriaResponse } from '../../../datasource/entities/responses/inventario_response';
 import { capitalize } from '../../../config/extensions/string_extension';
 import { useForm } from '../../hooks/form/useForm';
 import { PrimaryButton } from '../shared/button/PrimaryButton';
 import { Status } from '../../../datasource/entities/status';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
+import { useCategoria } from '../../hooks/categoria/useCategoria';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
+  const { categories } = useCategoria();
   const [status, setstatus] = useState<Status>(Status.notStarted);
   const [hasInputError, setHasInputError] = useState<boolean>(false);
   const { values, handleChange, resetForm } = useForm({
@@ -26,18 +27,8 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
     cantidad: 0,
     observacion_general: '',
   });
-  const [categories, setCategories] = useState<CategoriaResponse>();
   const [currentCategorie, setCurrentCategorie] = useState<Item>();
-  const getCategories = async (): Promise<void> => {
-    try {
-      const resp = await Api.instance.get<CategoriaResponse>('/api/categoria/');
-      const data = resp.data;
-      setCategories(data);
-    } catch (error: any) {
-      console.log(error);
-      throw new Error(`Algo paso ${error.message}`);
-    }
-  };
+
   const createProduct = async () => {
     if (values.nombre_producto.length === 0 || values.cantidad <= 0)
       return setHasInputError(true);
@@ -70,12 +61,6 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
         'error'
       );
     }
-  };
-  useEffect(() => {
-    getCategories();
-  });
-  const onSubmit = async () => {
-    await createProduct();
   };
 
   return (
@@ -127,7 +112,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
           value={values.observacion_general}
         />
         <PrimaryButton
-          onClick={onSubmit}
+          onClick={createProduct}
           disabled={status === Status.inProgress}
           title={'Enviar Producto al Inventario'}
         />
