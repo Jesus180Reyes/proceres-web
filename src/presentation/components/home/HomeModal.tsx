@@ -13,6 +13,7 @@ import { PrimaryButton } from '../shared/button/PrimaryButton';
 import { Status } from '../../../datasource/entities/status';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 import { useCategoria } from '../../hooks/categoria/useCategoria';
+import { useInventario } from '../../hooks/inventario/useInventario';
 
 interface Props {
   isOpen: boolean;
@@ -20,6 +21,7 @@ interface Props {
 }
 export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
   const { categories } = useCategoria();
+  const {getData: getInventario} = useInventario();
   const [status, setstatus] = useState<Status>(Status.notStarted);
   const [hasInputError, setHasInputError] = useState<boolean>(false);
   const { values, handleChange, resetForm } = useForm({
@@ -54,6 +56,7 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
         'Producto agregado al inventario Exitosamente!!',
         'success'
       );
+      await getInventario();
     } catch (error: any) {
       setstatus(Status.notStarted);
       CustomModals.showCustomModal(
