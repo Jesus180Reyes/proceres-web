@@ -9,10 +9,10 @@ import { store } from './presentation/store/store';
 const router = RouterAdapter.router;
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
     <Suspense fallback={<IsLoadingPage />}>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </Suspense>
     </Provider>
+    </Suspense>
   </React.StrictMode>
 );

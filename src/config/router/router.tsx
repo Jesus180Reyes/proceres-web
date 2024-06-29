@@ -5,9 +5,8 @@ import { lazy } from 'react';
 import { PrivateRoute } from '../../presentation/components/interceptors/PrivateRoute';
 import AppAuth from '../../AppAuth';
 import { AuthPrivateRoute } from '../../presentation/components/interceptors/AuthPrivateRoute';
-import LoginPage from '../../presentation/pages/auth/LoginPage';
 const HomePage = lazy(() => import('../../presentation/pages/home/HomePage'));
-// const LoginPage = lazy(() => import('../../presentation/pages/auth/LoginPage'));
+const LoginPage = lazy(() => import('../../presentation/pages/auth/LoginPage'));
 const InsumosPage = lazy(() => import('../../presentation/pages/insumos/InsumosPage'));
 /**
  * RouterAdapter es una clase que configura el enrutador de la aplicación usando react-router-dom.
