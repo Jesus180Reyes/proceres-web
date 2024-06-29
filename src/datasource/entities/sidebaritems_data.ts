@@ -10,8 +10,8 @@ export const sideBatItems: SideBarItem[] = [
     icon: 'home',
   },
   {
-    title: 'Proximamente',
-    href: 'proximamente',
+    title: 'Insumos',
+    href: 'insumos',
     icon: 'box',
   },
 

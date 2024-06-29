@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CustomButton } from '../../components/shared/button/CustomButton';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import 'react-responsive-modal/styles.css';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
 import { Status } from '../../../datasource/entities/status';
 import { useInventario } from '../../hooks/inventario/useInventario';
 
-const HomePage = () => {
+const HomePage = memo(() => {
   const { status, inventarioResponse } = useInventario();
   const [open, setOpen] = useState<boolean>(false);
 
@@ -35,6 +35,7 @@ const HomePage = () => {
       </div>
     </>
   );
-};
+}
+);
 
 export default HomePage;

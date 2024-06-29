@@ -1,0 +1,81 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  useNavigate } from 'react-router-dom';
+import { Api } from '../../../config/api/api';
+import { CustomModals } from '../../../config/helpers/modals/custom_modals';
+import { PrimaryButton } from '../../components/shared/button/PrimaryButton';
+import { CustomTextfieldComponent } from '../../components/shared/input/CustomTextfieldComponent';
+import { useForm } from '../../hooks/form/useForm';
+import { useState } from 'react';
+import { Status } from '../../../datasource/entities/status';
+
+ const LoginPage = () => {
+  const [status, setstatus] = useState<Status>(Status.notStarted);
+  const navigate = useNavigate();
+  const {values, resetForm, handleChange} = useForm({
+    email: '',
+    password: ''
+  });
+//   const onInputChange = (
+//     e: ChangeEvent<HTMLInputElement>,
+//     setValue: React.Dispatch<React.SetStateAction<string>>,
+//   ) => {
+//     setValue(e.target.value);
+//   };
+const login = async () => {
+  try {
+    setstatus(Status.inProgress);
+   await Api.instance.post('/api/auth', {
+      email: values.email,
+      password: values.password
+    });
+    navigate('/', {replace: true});
+    // * Agregar token a el store de redux
+    // localStorage.setItem('token', )
+    setstatus(Status.done);
+    resetForm();
+    
+  } catch (error:any) {
+    console.log(error);
+    setstatus(Status.notStarted);
+    CustomModals.showCustomModal('Credenciales Incorrectas', 'error', error.response.data.msg);
+    
+  }
+}
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+    await login();
+    
+  };
+  return (
+    <>
+      <div className='min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12'>
+        <div className='p-10 xs:p-0 mx-auto md:w-full md:max-w-md'>
+          <h1 className='font-bold text-center text-2xl mb-5'>
+            Inicio de Sesion
+          </h1>
+          <div className='bg-white shadow w-full rounded-lg divide-y divide-gray-200'>
+            <form onSubmit={onSubmit}>
+              <div className='px-5 py-7'>
+                <CustomTextfieldComponent
+                  title='Email'
+                  value={values.email}
+                  name='email'
+                  onChange={handleChange}
+                />
+                <CustomTextfieldComponent
+                  typeInput='password'
+                  title='Contraseña'
+                  name='password'
+                  value={values.password}
+                  onChange={handleChange}
+                />
+                <PrimaryButton disabled={status === Status.inProgress} title='Iniciar Sesion' onClick={() => onSubmit} />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+export default LoginPage;

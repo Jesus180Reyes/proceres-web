@@ -5,7 +5,7 @@ import {
   Item,
 } from '../shared/dropdown/CustomDropdownComponent';
 import { CustomTextfieldComponent } from '../shared/input/CustomTextfieldComponent';
-import { FC, useState } from 'react';
+import { FC, useState, memo } from 'react';
 import { Api } from '../../../config/api/api';
 import { capitalize } from '../../../config/extensions/string_extension';
 import { useForm } from '../../hooks/form/useForm';
@@ -19,7 +19,7 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
-export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
+export const  HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
   const { categories } = useCategoria();
   const {getData: getInventario} = useInventario();
   const [status, setstatus] = useState<Status>(Status.notStarted);
@@ -128,4 +128,5 @@ export const HomeModal: FC<Props> = ({ isOpen, onClose }) => {
       </Modal>
     </>
   );
-};
+}
+);
