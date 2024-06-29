@@ -1,37 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  useNavigate } from 'react-router-dom';
+import {   useNavigate } from 'react-router-dom';
 import { Api } from '../../../config/api/api';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 import { PrimaryButton } from '../../components/shared/button/PrimaryButton';
 import { CustomTextfieldComponent } from '../../components/shared/input/CustomTextfieldComponent';
 import { useForm } from '../../hooks/form/useForm';
-import { useState } from 'react';
+import {   useState } from 'react';
 import { Status } from '../../../datasource/entities/status';
+import { useAppDispatch } from '../../store/hooks';
+import {  login as loginStore } from '../../store/slices/auth/auth';
+import { LoginAuthResponse } from '../../../datasource/entities/responses/loginauth_response';
 
  const LoginPage = () => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
   const {values, resetForm, handleChange} = useForm({
     email: '',
     password: ''
   });
-//   const onInputChange = (
-//     e: ChangeEvent<HTMLInputElement>,
-//     setValue: React.Dispatch<React.SetStateAction<string>>,
-//   ) => {
-//     setValue(e.target.value);
-//   };
+
+
 const login = async () => {
   try {
     setstatus(Status.inProgress);
-   await Api.instance.post('/api/auth', {
+ const resp =  await Api.instance.post<LoginAuthResponse>('/api/auth', {
       email: values.email,
       password: values.password
     });
     navigate('/', {replace: true});
     // * Agregar token a el store de redux
     // localStorage.setItem('token', )
+    const data =  resp.data;
     setstatus(Status.done);
+    dispatch(loginStore(data));
     resetForm();
     
   } catch (error:any) {
