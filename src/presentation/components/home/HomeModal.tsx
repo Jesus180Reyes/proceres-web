@@ -52,7 +52,6 @@ export const  HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
         cantidad: values.cantidad,
         observacion_general: values.observacion_general,
         categoria_id: currentCategorie?.id,
-        user_id: 1,
       });
       resetForm();
       setHasInputError(false);

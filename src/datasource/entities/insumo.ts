@@ -1,3 +1,4 @@
+import { Usuario } from './responses/inventario_response';
 export interface InsumoResponse {
 
     ok: boolean,
@@ -9,6 +10,7 @@ export interface Insumo {
     user_id:             number;
     cantidad:            number;
     observacion_general: string;
+    user:                Usuario;
     createdAt:           Date;
     updatedAt:           Date;
 }
