@@ -1,6 +1,20 @@
+import { useEffect } from "react";
+import { Api } from "../../../config/api/api";
+import {  InsumoResponse } from "../../../datasource/entities/insumo";
 import { CustomButton } from "../../components/shared/button/CustomButton";
 
  const InsumosPage = () => {
+  const getData = async() => {
+    const resp = await Api.instance.get<InsumoResponse>('/api/insumo');
+    const data = resp.data;
+    console.log(data.insumos)
+    return data;
+
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+  
   return (
     <>
     <div className="home-container">
