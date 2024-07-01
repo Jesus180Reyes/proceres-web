@@ -13,6 +13,7 @@ import { LoginAuthResponse } from '../../../datasource/entities/responses/logina
 
  const LoginPage = () => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
+  const [hasInputError, setHasInputError] = useState<boolean>(false);
   const dispatch = useAppDispatch()
   const navigate = useNavigate();
   const {values, resetForm, handleChange} = useForm({
@@ -22,6 +23,7 @@ import { LoginAuthResponse } from '../../../datasource/entities/responses/logina
 
 
 const login = async () => {
+  if (values.email.length === 0 || values.password.length === 0) return setHasInputError(true);
   try {
     setstatus(Status.inProgress);
  const resp =  await Api.instance.post<LoginAuthResponse>('/api/auth', {
@@ -29,8 +31,6 @@ const login = async () => {
       password: values.password
     });
     navigate('/', {replace: true});
-    // * Agregar token a el store de redux
-    // localStorage.setItem('token', )
     const data =  resp.data;
     setstatus(Status.done);
     dispatch(loginStore(data));
@@ -59,12 +59,16 @@ const login = async () => {
             <form onSubmit={onSubmit}>
               <div className='px-5 py-7'>
                 <CustomTextfieldComponent
+                  error={values.email.length <= 0 && hasInputError}
+                  errorMsg='El email es obligatorio'
                   title='Email'
                   value={values.email}
                   name='email'
                   onChange={handleChange}
-                />
+                  />
                 <CustomTextfieldComponent
+                  error={values.password.length <= 0 && hasInputError}
+                  errorMsg='La Contraseña es obligatoria '
                   typeInput='password'
                   title='Contraseña'
                   name='password'
