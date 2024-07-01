@@ -20,9 +20,4 @@ export const sideBatItems: SideBarItem[] = [
     href: 'notificaciones',
     icon: 'bell',
   },
-  {
-    title: 'Cerrar Sesion',
-    href: 'logout',
-    icon: 'log-out',
-  },
 ];
