@@ -5,9 +5,9 @@ export class Api {
   static instance = axios.create({
     baseURL: api_url,
     headers: {
-      "Content-Type": "application/json",
-      'Authorization': `${localStorage.getItem('token')}`,
-    }
+      'Content-Type': 'application/json',
+      Authorization: `${localStorage.getItem('token')}`,
+    },
     // timeout: 1000,
   });
 }

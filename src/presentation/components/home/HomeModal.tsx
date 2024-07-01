@@ -19,9 +19,9 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
-export const  HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
+export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
   const { categories } = useCategoria();
-  const {getData: getInventario} = useInventario();
+  const { getData: getInventario } = useInventario();
   const [status, setstatus] = useState<Status>(Status.notStarted);
   const [hasInputError, setHasInputError] = useState<boolean>(false);
   const { values, handleChange, resetForm } = useForm({
@@ -35,7 +35,7 @@ export const  HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
     resetForm();
     setHasInputError(false);
     setCurrentCategorie(undefined);
-  }
+  };
 
   const createProduct = async () => {
     if (values.nombre_producto.length === 0 || values.cantidad <= 0)
@@ -127,5 +127,4 @@ export const  HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
       </Modal>
     </>
   );
-}
-);
+});

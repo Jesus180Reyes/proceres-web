@@ -7,13 +7,15 @@ import AppAuth from '../../AppAuth';
 import { AuthPrivateRoute } from '../../presentation/components/interceptors/AuthPrivateRoute';
 const HomePage = lazy(() => import('../../presentation/pages/home/HomePage'));
 const LoginPage = lazy(() => import('../../presentation/pages/auth/LoginPage'));
-const InsumosPage = lazy(() => import('../../presentation/pages/insumos/InsumosPage'));
+const InsumosPage = lazy(
+  () => import('../../presentation/pages/insumos/InsumosPage')
+);
 /**
  * RouterAdapter es una clase que configura el enrutador de la aplicación usando react-router-dom.
  * Define las rutas principales y las rutas secundarias de la aplicación.
  */
 export class RouterAdapter {
-   /**
+  /**
    * @static {Router} router - El enrutador de la aplicación configurado con las rutas principales y secundarias.
    */
   static router = createBrowserRouter([
@@ -26,17 +28,17 @@ export class RouterAdapter {
           path: '/',
           element: (
             <PrivateRoute>
-            <HomePage />,
+              <HomePage />,
             </PrivateRoute>
-          )
+          ),
         },
         {
           path: '/insumos',
           element: (
             <PrivateRoute>
-            <InsumosPage />,
+              <InsumosPage />,
             </PrivateRoute>
-          )
+          ),
         },
 
         { path: '*', element: <Navigate to="/" /> },
@@ -44,18 +46,18 @@ export class RouterAdapter {
     },
     {
       path: '/auth',
-      element: <AppAuth/>,
+      element: <AppAuth />,
       children: [
         {
           path: 'login',
-         element: (
-          <AuthPrivateRoute>
-            <LoginPage/>
-          </AuthPrivateRoute>
-         )
-        }
-      ]
-  },
-  { path: '/auth/*', element: <Navigate to='/auth/login' /> },
+          element: (
+            <AuthPrivateRoute>
+              <LoginPage />
+            </AuthPrivateRoute>
+          ),
+        },
+      ],
+    },
+    { path: '/auth/*', element: <Navigate to="/auth/login" /> },
   ]);
 }

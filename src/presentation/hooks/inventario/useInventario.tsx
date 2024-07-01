@@ -34,6 +34,6 @@ export const useInventario = () => {
     status,
     inventarioResponse,
     // * Metodos
-    getData
+    getData,
   };
 };

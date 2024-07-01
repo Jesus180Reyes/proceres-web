@@ -1,46 +1,48 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Modal from "react-responsive-modal"
-import { PrimaryButton } from "../shared/button/PrimaryButton"
-import { CustomTextfieldComponent } from "../shared/input/CustomTextfieldComponent"
-import { FC, useState } from "react"
-import { Api } from "../../../config/api/api";
-import { useForm } from "../../hooks/form/useForm";
-import { CustomModals } from "../../../config/helpers/modals/custom_modals";
-import { Status } from "../../../datasource/entities/status";
+import Modal from 'react-responsive-modal';
+import { PrimaryButton } from '../shared/button/PrimaryButton';
+import { CustomTextfieldComponent } from '../shared/input/CustomTextfieldComponent';
+import { FC, useState } from 'react';
+import { Api } from '../../../config/api/api';
+import { useForm } from '../../hooks/form/useForm';
+import { CustomModals } from '../../../config/helpers/modals/custom_modals';
+import { Status } from '../../../datasource/entities/status';
 interface Props {
-    isOpen: boolean;
-    onCloseModal: () => void;
+  isOpen: boolean;
+  onCloseModal: () => void;
 }
-export const InsumoModal: FC<Props> = ({isOpen, onCloseModal}) => {
+export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
   const [status, setstatus] = useState(Status.notStarted);
   const [onInputError, setonInputError] = useState<boolean>(false);
-  const {resetForm, values, handleChange} = useForm({
+  const { resetForm, values, handleChange } = useForm({
     nombre_producto: '',
     cantidad: 0,
-    observacion_general: ''
+    observacion_general: '',
   });
   const createInsumo = async () => {
-    if (values.nombre_producto.length === 0 || values.cantidad <= 0) return setonInputError(true);
+    if (values.nombre_producto.length === 0 || values.cantidad <= 0)
+      return setonInputError(true);
     try {
-      setstatus(Status.inProgress)
+      setstatus(Status.inProgress);
       await Api.instance.post('/api/insumo', values);
-      CustomModals.showCustomModal('Insumo Creado Exitosamente', "success");
-      setstatus(Status.done)
+      CustomModals.showCustomModal('Insumo Creado Exitosamente', 'success');
+      setstatus(Status.done);
       resetForm();
-    } catch (error:any) {
-      setstatus(Status.notStarted)
+    } catch (error: any) {
+      setstatus(Status.notStarted);
       console.log(error);
-      CustomModals.showCustomModal('Ups! Error no esperado', "error", error.message);
-      
+      CustomModals.showCustomModal(
+        'Ups! Error no esperado',
+        'error',
+        error.message
+      );
     }
-
-
-  }
-  const onClosedModal  = () => {
+  };
+  const onClosedModal = () => {
     resetForm();
     setonInputError(false);
     onCloseModal();
-  }
+  };
   return (
     <>
       <Modal open={isOpen} onClose={onClosedModal} center>
@@ -86,5 +88,5 @@ export const InsumoModal: FC<Props> = ({isOpen, onCloseModal}) => {
         />
       </Modal>
     </>
-  )
-}
+  );
+};

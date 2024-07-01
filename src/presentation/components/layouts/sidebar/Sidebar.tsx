@@ -10,12 +10,12 @@ export const Sidebar = () => {
   const onItemSelectedChange = (href: string, index: number) => {
     navigate(href);
     setcurrentItem(index);
-  }
+  };
   const dispatch = useAppDispatch();
   const onLogout = () => {
     dispatch(logOut());
-    navigate('/auth/login', {replace: true})
-  }
+    navigate('/auth/login', { replace: true });
+  };
   return (
     <>
       <link
@@ -33,7 +33,7 @@ export const Sidebar = () => {
               return (
                 <li key={i}>
                   <a
-                    onClick={()=> onItemSelectedChange(href, i)}
+                    onClick={() => onItemSelectedChange(href, i)}
                     className={`${currentItem === i ? 'bg-green-200 rounded m-2' : undefined} cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800`}>
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <i className={icon && `bx bx-${icon}`}></i>
@@ -43,16 +43,16 @@ export const Sidebar = () => {
                 </li>
               );
             })}
-             <li>
-                  <a
-                    onClick={onLogout}
-                    className={` cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800`}>
-                    <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
-                      <i className={`bx bx-log-out`}></i>
-                    </span>
-                    <span className="text-sm font-medium">Cerrar Sesion</span>
-                  </a>
-                </li>
+            <li>
+              <a
+                onClick={onLogout}
+                className={` cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800`}>
+                <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                  <i className={`bx bx-log-out`}></i>
+                </span>
+                <span className="text-sm font-medium">Cerrar Sesion</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
