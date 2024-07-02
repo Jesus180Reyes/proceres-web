@@ -27,7 +27,7 @@ const LoginPage = () => {
     try {
       setstatus(Status.inProgress);
       const resp = await Api.instance.post<LoginAuthResponse>('/api/auth', {
-        email: values.email,
+        email: values.email.trim(),
         password: values.password,
       });
       navigate('/', { replace: true });
@@ -63,6 +63,7 @@ const LoginPage = () => {
                   error={values.email.length <= 0 && hasInputError}
                   errorMsg="El email es obligatorio"
                   title="Email"
+                  typeInput="email"
                   value={values.email}
                   name="email"
                   onChange={handleChange}

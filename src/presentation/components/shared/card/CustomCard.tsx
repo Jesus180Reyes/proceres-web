@@ -26,7 +26,7 @@ export const CustomCard = () => {
     dashboardData?.category.totalProductsOnAirbnb ?? 0,
     dashboardData?.category.totalProductsOnInmobiliaria ?? 0,
     dashboardData?.category.totalProductsOnPlateria ?? 0,
-    dashboardData?.category.totalProductsOnUtensillos ?? 0,
+    dashboardData?.category.totalProductsOnUtensillos ?? 0
   );
   return (
     <>
@@ -46,7 +46,9 @@ export const CustomCard = () => {
                       </span>
                     </div>
                     <div className="relative w-auto pl-4 flex-initial">
-                      <div style={{backgroundColor: `${e.color }`}} className={`text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  `}>
+                      <div
+                        style={{ backgroundColor: `${e.color}` }}
+                        className={`text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  `}>
                         {<e.icon />}
                       </div>
                     </div>
