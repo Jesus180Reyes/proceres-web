@@ -30,11 +30,11 @@ const LoginPage = () => {
         email: values.email.trim(),
         password: values.password,
       });
-      navigate('/', { replace: true });
-      const data = resp.data;
-      setstatus(Status.done);
+      const data =  resp.data;
       dispatch(loginStore(data));
       resetForm();
+      navigate('/home', { replace: true });
+      setstatus(Status.done);
     } catch (error: any) {
       console.log(error);
       setstatus(Status.notStarted);

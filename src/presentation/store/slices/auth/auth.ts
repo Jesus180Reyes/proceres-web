@@ -22,6 +22,7 @@ export const authSlice = createSlice({
     login: (state, action: PayloadAction<LoginAuthResponse>) => {
       state.authenticationStatus = 'authenticated';
       state.user = action.payload;
+      localStorage.setItem('id', action.payload.user.id.toString());
       localStorage.setItem('token', action.payload.token);
     },
     logOut: state => {

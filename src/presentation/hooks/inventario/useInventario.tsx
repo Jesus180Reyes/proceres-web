@@ -21,6 +21,7 @@ export const useInventario = () => {
       return data;
     } catch (error: any) {
       setstatus(Status.notStarted);
+      console.log(error);
       throw new Error(error.message);
     }
   };

@@ -20,7 +20,6 @@ const InsumosPage = () => {
       const resp = await Api.instance.get<InsumoResponse>('/api/insumo');
       const data = resp.data;
       setInsumosResponse(data.insumos);
-      console.log(data.insumos);
       setstatus(Status.done);
       return data;
     } catch (error: any) {
@@ -29,13 +28,13 @@ const InsumosPage = () => {
         'error',
         error.message
       );
+      setstatus(Status.notStarted);
       throw new Error(`Ups! Error inseperado ${error.message}`);
     }
   };
   useEffect(() => {
     getData();
   }, []);
-
   return (
     <>
       <div className="home-container">

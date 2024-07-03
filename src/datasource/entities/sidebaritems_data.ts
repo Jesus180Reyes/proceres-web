@@ -6,7 +6,7 @@ interface SideBarItem {
 export const sideBatItems: SideBarItem[] = [
   {
     title: 'Inventario',
-    href: '/',
+    href: '/home',
     icon: 'home',
   },
   {

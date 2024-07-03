@@ -2,11 +2,10 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
 import { lazy } from 'react';
-import { PrivateRoute } from '../../presentation/components/interceptors/PrivateRoute';
 import AppAuth from '../../AppAuth';
-import { AuthPrivateRoute } from '../../presentation/components/interceptors/AuthPrivateRoute';
 const HomePage = lazy(() => import('../../presentation/pages/home/HomePage'));
 const LoginPage = lazy(() => import('../../presentation/pages/auth/LoginPage'));
+const LoadingPage = lazy(() => import('../../presentation/pages/loading/LoadingPage'));
 const InsumosPage = lazy(
   () => import('../../presentation/pages/insumos/InsumosPage')
 );
@@ -26,20 +25,22 @@ export class RouterAdapter {
         {
           index: true,
           path: '/',
-          element: (
-            <PrivateRoute>
-              <HomePage />,
-            </PrivateRoute>
-          ),
+          element: <Navigate to={'/auth/loading'} replace/>,
         },
         {
-          path: '/insumos',
-          element: (
-            <PrivateRoute>
-              <InsumosPage />,
-            </PrivateRoute>
-          ),
+          // index: true,
+          path: 'home',
+          element: <HomePage/>
+           
         },
+        {
+          path: 'insumos',
+          element:  <InsumosPage />,
+            // <PrivateRoute>
+             
+            // </PrivateRoute>
+        },
+        
 
         { path: '*', element: <Navigate to="/" /> },
       ],
@@ -50,11 +51,12 @@ export class RouterAdapter {
       children: [
         {
           path: 'login',
-          element: (
-            <AuthPrivateRoute>
-              <LoginPage />
-            </AuthPrivateRoute>
-          ),
+          element: <LoginPage/>
+        },
+        {
+          path: 'loading',
+          // index: true,
+          element: <LoadingPage/>
         },
       ],
     },

@@ -2,19 +2,24 @@
 import { useEffect, useState } from "react";
 import { Api } from "../../../../config/api/api";
 import { getCardInsumosData } from "../../../../datasource/cardItems";
+import { Status } from "../../../../datasource/entities/status";
+import { IsLoadingPage } from "../loading/IsLoadingPage";
 
 export const InsumoCard = () => {
     const [cardData, setcardData] = useState<any>();
+    const [status, setstatus] = useState<Status>(Status.notStarted);
     const getData = async () => {
+        setstatus(Status.inProgress);
         const resp = await Api.instance.get('/api/insumo/total/insumo');
         const data = await resp.data;
+        setstatus(Status.done);
         setcardData(data);
     }
     useEffect(() => {
       getData();
     }, []);
     const getInsumosData = getCardInsumosData(cardData?.totalInsumos ?? 0,cardData?.quantityInsumos ?? 0 );
-    
+    if(status === Status.inProgress) return (<IsLoadingPage/>)
     return (
         <>
           <div className="flex flex-wrap   mb-4">

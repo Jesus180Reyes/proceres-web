@@ -18,7 +18,7 @@ export const useCategoria = () => {
 
   useEffect(() => {
     getCategories();
-  });
+  }, []);
   return {
     // * Propiedades
     categories,
