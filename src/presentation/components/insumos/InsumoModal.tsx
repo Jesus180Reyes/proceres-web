@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import 'react-responsive-modal/styles.css';
 import Modal from 'react-responsive-modal';
 import { PrimaryButton } from '../shared/button/PrimaryButton';
 import { CustomTextfieldComponent } from '../shared/input/CustomTextfieldComponent';

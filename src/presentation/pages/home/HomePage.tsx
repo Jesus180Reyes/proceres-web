@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CustomButton } from '../../components/shared/button/CustomButton';
 import { memo, useState } from 'react';
-import 'react-responsive-modal/styles.css';
+import { CustomButton } from '../../components/shared/button/CustomButton';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
 import { Status } from '../../../datasource/entities/status';
