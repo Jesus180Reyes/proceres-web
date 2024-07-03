@@ -8,7 +8,6 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentItem, setcurrentItem] = useState<string>(location.pathname);
-  console.log(currentItem);
   const onItemSelectedChange = (href: string) => {
     navigate(href);
     setcurrentItem(href);
