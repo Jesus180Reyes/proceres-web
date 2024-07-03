@@ -8,6 +8,7 @@ import { TableInsumos } from '../../components/shared/table/TableInsumos';
 import { Status } from '../../../datasource/entities/status';
 import { InsumoModal } from '../../components/insumos/InsumoModal';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
+import { InsumoCard } from '../../components/shared/card/InsumoCard';
 
 const InsumosPage = () => {
   const [isOpen, setisOpen] = useState<boolean>(false);
@@ -41,6 +42,9 @@ const InsumosPage = () => {
         <h1 className="py-4 ml-3 mt-3 text-2xl font-semibold">
           Gestion de Insumos
         </h1>
+        <div>
+          <InsumoCard/>
+        </div>
         <div className="flex  w-full items-end justify-end ">
           <div className="mr-5 ">
             <CustomButton

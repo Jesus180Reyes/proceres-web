@@ -4,6 +4,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    import('tailwindcss-animated')
+
+  ],
   theme: {
     extend: {
       // fontFamily: {
@@ -50,6 +54,5 @@ export default {
     // },
     
   },
-  plugins: [],
 }
 }

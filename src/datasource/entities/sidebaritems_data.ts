@@ -15,9 +15,9 @@ export const sideBatItems: SideBarItem[] = [
     icon: 'box',
   },
 
-  {
-    title: 'Notificaciones',
-    href: 'notificaciones',
-    icon: 'bell',
-  },
+  // {
+  //   title: 'Notificaciones',
+  //   href: 'notificaciones',
+  //   icon: 'bell',
+  // },
 ];

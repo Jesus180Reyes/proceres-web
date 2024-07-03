@@ -2,7 +2,7 @@ import { IconType } from 'react-icons';
 import { BiCategory } from 'react-icons/bi';
 import { FaAirbnb, FaChartLine } from 'react-icons/fa';
 import { FaKitchenSet, FaPlateWheat } from 'react-icons/fa6';
-import { IoRestaurantOutline } from 'react-icons/io5';
+import { IoFastFood, IoRestaurantOutline } from 'react-icons/io5';
 import { LuShoppingBag } from 'react-icons/lu';
 import {
   MdCleanHands,
@@ -97,6 +97,28 @@ export const getCardItemsData = (
       data: productsOnUtensillo,
       color: '#808080',
     },
+  ];
+  return cardItems;
+};
+export const getCardInsumosData = (
+  totalInsumos: number,
+  totalQuantity: number,
+  
+): CardItem[] => {
+  const cardItems: CardItem[] = [
+    {
+      title: 'Total Insumos',
+      icon: FaChartLine,
+      data: totalInsumos,
+      color: '#FF69B4',
+    },
+    {
+      title: 'Cantidad de Insumos',
+      icon: IoFastFood,
+      data: totalQuantity,
+      color: '#FF5733',
+    },
+   
   ];
   return cardItems;
 };
