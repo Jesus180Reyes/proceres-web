@@ -12,7 +12,7 @@ import { Status } from "../../../datasource/entities/status";
  const LoadingPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const [status, setstatus] = useState<Status>(Status.notStarted);
+    const [, setstatus] = useState<Status>(Status.notStarted);
   const isTokenValid = async():Promise<boolean> => {
       const id = localStorage.getItem('id');
       const token = localStorage.getItem('token');
