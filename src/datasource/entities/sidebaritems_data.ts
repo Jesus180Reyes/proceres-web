@@ -11,7 +11,7 @@ export const sideBatItems: SideBarItem[] = [
   },
   {
     title: 'Insumos',
-    href: 'insumos',
+    href: '/insumos',
     icon: 'box',
   },
 

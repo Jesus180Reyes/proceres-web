@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { sideBatItems } from '../../../../datasource/entities/sidebaritems_data';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../store/hooks';
@@ -6,10 +6,12 @@ import { logOut } from '../../../store/slices/auth/auth';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const [currentItem, setcurrentItem] = useState<number>(0);
-  const onItemSelectedChange = (href: string, index: number) => {
+  const location = useLocation();
+  const [currentItem, setcurrentItem] = useState<string>(location.pathname);
+  console.log(currentItem);
+  const onItemSelectedChange = (href: string) => {
     navigate(href);
-    setcurrentItem(index);
+    setcurrentItem(href);
   };
   const dispatch = useAppDispatch();
   const onLogout = () => {
@@ -33,8 +35,8 @@ export const Sidebar = () => {
               return (
                 <li key={i}>
                   <a
-                    onClick={() => onItemSelectedChange(href, i)}
-                    className={`${currentItem === i ? 'bg-green-200 rounded m-2' : undefined} cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800`}>
+                    onClick={() => onItemSelectedChange(href)}
+                    className={`${currentItem === href ? 'bg-green-200 rounded m-2' : undefined} cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800`}>
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <i className={icon && `bx bx-${icon}`}></i>
                     </span>
