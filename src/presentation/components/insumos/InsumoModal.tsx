@@ -8,11 +8,13 @@ import { Api } from '../../../config/api/api';
 import { useForm } from '../../hooks/form/useForm';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 import { Status } from '../../../datasource/entities/status';
+import { useInsumo } from '../../hooks/insumo/useInsumo';
 interface Props {
   isOpen: boolean;
   onCloseModal: () => void;
 }
 export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
+  const  {getData} = useInsumo();
   const [status, setstatus] = useState(Status.notStarted);
   const [onInputError, setonInputError] = useState<boolean>(false);
   const { resetForm, values, handleChange } = useForm({
@@ -27,6 +29,7 @@ export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
       setstatus(Status.inProgress);
       await Api.instance.post('/api/insumo', values);
       CustomModals.showCustomModal('Insumo Creado Exitosamente', 'success');
+      await getData();
       setstatus(Status.done);
       resetForm();
     } catch (error: any) {
