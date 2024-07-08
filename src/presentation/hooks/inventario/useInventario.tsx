@@ -13,12 +13,13 @@ export const useInventario = (params?: any) => {
   const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>();
   const memoizedParams = useMemo(() => params, [JSON.stringify(params)]);
 
-
   const getData = async (): Promise<InventarioResponse> => {
     try {
       setstatus(Status.inProgress);
-      const resp =
-        await Api.instance.get<InventarioResponse>('/api/inventario/', {params});
+      const resp = await Api.instance.get<InventarioResponse>(
+        '/api/inventario/',
+        { params }
+      );
       const data = resp.data;
       setinventarioResponse(data.inventario);
       setstatus(Status.done);
