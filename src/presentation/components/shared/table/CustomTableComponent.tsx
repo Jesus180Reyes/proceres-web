@@ -28,6 +28,7 @@ interface Props {
  */
 export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
   if (isLoading) return <IsLoadingPage />;
+  if(items.length === 0 ) return (<h1 className='text-center mt-2 font-semibold text-lg'>No hay datos Registrados.</h1>)
   return (
     <>
       <table className="border-collapse w-full mt-10">
@@ -45,7 +46,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
           </tr>
         </thead>
         <tbody>
-          {items.map((e, i) => {
+          { items.map((e, i) => {
             const createdDate = new Date(e.createdAt.toLocaleString());
             return (
               <tr
