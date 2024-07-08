@@ -14,7 +14,7 @@ interface Props {
   onCloseModal: () => void;
 }
 export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
-  const  {getData} = useInsumo();
+  const { getData } = useInsumo();
   const [status, setstatus] = useState(Status.notStarted);
   const [onInputError, setonInputError] = useState<boolean>(false);
   const { resetForm, values, handleChange } = useForm({

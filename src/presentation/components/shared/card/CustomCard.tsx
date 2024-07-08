@@ -9,11 +9,11 @@ export const CustomCard = () => {
   const [dashboardData, setdashboardData] = useState<DashboardData>();
   const [status, setstatus] = useState<Status>(Status.notStarted);
   const getCardData = async (): Promise<DashboardData> => {
-    setstatus(Status.inProgress)
+    setstatus(Status.inProgress);
     const resp = await Api.instance.get('/api/inventario/total/Products');
     const data = await resp.data;
     setdashboardData(data);
-    setstatus(Status.done)
+    setstatus(Status.done);
     return data;
   };
   useEffect(() => {
@@ -33,7 +33,7 @@ export const CustomCard = () => {
     dashboardData?.category.totalProductsOnPlateria ?? 0,
     dashboardData?.category.totalProductsOnUtensillos ?? 0
   );
-  if(status === Status.inProgress) return (<IsLoadingPage/>);
+  if (status === Status.inProgress) return <IsLoadingPage />;
   return (
     <>
       <div className="flex flex-wrap   mb-4">

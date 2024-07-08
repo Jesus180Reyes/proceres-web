@@ -30,7 +30,7 @@ const LoginPage = () => {
         email: values.email.trim(),
         password: values.password,
       });
-      const data =  resp.data;
+      const data = resp.data;
       dispatch(loginStore(data));
       resetForm();
       navigate('/home', { replace: true });

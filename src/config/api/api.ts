@@ -8,7 +8,7 @@ export class Api {
       'Content-Type': 'application/json',
     },
     // timeout: 1000,
-  });  
+  });
   static setupInterceptors() {
     Api.instance.interceptors.request.use(
       config => {
@@ -23,8 +23,5 @@ export class Api {
       }
     );
   }
-  
-  
-  
 }
 Api.setupInterceptors();

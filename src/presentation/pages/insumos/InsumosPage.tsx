@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { CustomButton } from '../../components/shared/button/CustomButton';
 import { TableInsumos } from '../../components/shared/table/TableInsumos';
 import { Status } from '../../../datasource/entities/status';
@@ -8,7 +8,7 @@ import { useInsumo } from '../../hooks/insumo/useInsumo';
 
 const InsumosPage = () => {
   const [isOpen, setisOpen] = useState<boolean>(false);
-  const { insumosResponse, status}  = useInsumo();
+  const { insumosResponse, status } = useInsumo();
   return (
     <>
       <div className="home-container">
@@ -16,7 +16,7 @@ const InsumosPage = () => {
           Gestion de Insumos
         </h1>
         <div>
-          <InsumoCard/>
+          <InsumoCard />
         </div>
         <div className="flex  w-full items-end justify-end ">
           <div className="mr-5 ">

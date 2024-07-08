@@ -5,7 +5,9 @@ import { lazy } from 'react';
 import AppAuth from '../../AppAuth';
 const HomePage = lazy(() => import('../../presentation/pages/home/HomePage'));
 const LoginPage = lazy(() => import('../../presentation/pages/auth/LoginPage'));
-const LoadingPage = lazy(() => import('../../presentation/pages/loading/LoadingPage'));
+const LoadingPage = lazy(
+  () => import('../../presentation/pages/loading/LoadingPage')
+);
 const InsumosPage = lazy(
   () => import('../../presentation/pages/insumos/InsumosPage')
 );
@@ -25,22 +27,20 @@ export class RouterAdapter {
         {
           index: true,
           path: '/',
-          element: <Navigate to={'/auth/loading'} replace/>,
+          element: <Navigate to={'/auth/loading'} replace />,
         },
         {
           // index: true,
           path: 'home',
-          element: <HomePage/>
-           
+          element: <HomePage />,
         },
         {
           path: 'insumos',
-          element:  <InsumosPage />,
-            // <PrivateRoute>
-             
-            // </PrivateRoute>
+          element: <InsumosPage />,
+          // <PrivateRoute>
+
+          // </PrivateRoute>
         },
-        
 
         { path: '*', element: <Navigate to="/" /> },
       ],
@@ -51,12 +51,12 @@ export class RouterAdapter {
       children: [
         {
           path: 'login',
-          element: <LoginPage/>
+          element: <LoginPage />,
         },
         {
           path: 'loading',
           // index: true,
-          element: <LoadingPage/>
+          element: <LoadingPage />,
         },
       ],
     },

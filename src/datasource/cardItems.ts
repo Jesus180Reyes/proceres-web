@@ -102,8 +102,7 @@ export const getCardItemsData = (
 };
 export const getCardInsumosData = (
   totalInsumos: number,
-  totalQuantity: number,
-  
+  totalQuantity: number
 ): CardItem[] => {
   const cardItems: CardItem[] = [
     {
@@ -118,7 +117,6 @@ export const getCardInsumosData = (
       data: totalQuantity,
       color: '#FF5733',
     },
-   
   ];
   return cardItems;
 };
