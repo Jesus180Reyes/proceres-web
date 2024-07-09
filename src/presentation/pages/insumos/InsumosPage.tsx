@@ -7,7 +7,10 @@ import { InsumoModal } from '../../components/insumos/InsumoModal';
 import { InsumoCard } from '../../components/shared/card/InsumoCard';
 import { useInsumo } from '../../hooks/insumo/useInsumo';
 import DatePicker from 'react-datepicker';
-import { CustomDropdownComponent, Item } from '../../components/shared/dropdown/CustomDropdownComponent';
+import {
+  CustomDropdownComponent,
+  Item,
+} from '../../components/shared/dropdown/CustomDropdownComponent';
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
 import { useUser } from '../../hooks/users/useUser';
@@ -15,7 +18,7 @@ import { capitalize } from '../../../config/extensions/string_extension';
 
 const InsumosPage = () => {
   const [dates, setdates] = useState([null, null]);
-  
+
   const [isOpen, setisOpen] = useState<boolean>(false);
   const [filterUser, setFilterUser] = useState<Item>();
   const { insumosResponse, status } = useInsumo({

@@ -14,7 +14,9 @@ export const useInsumo = (params?: any) => {
   const getData = async () => {
     try {
       setstatus(Status.inProgress);
-      const resp = await Api.instance.get<InsumoResponse>('/api/insumo', { params });
+      const resp = await Api.instance.get<InsumoResponse>('/api/insumo', {
+        params,
+      });
       const data = resp.data;
       setInsumosResponse(data.insumos);
       setstatus(Status.done);
