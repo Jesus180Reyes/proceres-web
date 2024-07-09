@@ -1,17 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Api } from '../../../config/api/api';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 import { Insumo, InsumoResponse } from '../../../datasource/entities/insumo';
 import { Status } from '../../../datasource/entities/status';
 
-export const useInsumo = () => {
+export const useInsumo = (params?: any) => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
   const [insumosResponse, setInsumosResponse] = useState<Insumo[]>();
+  const memoizedParams = useMemo(() => params, [JSON.stringify(params)]);
+
   const getData = async () => {
     try {
       setstatus(Status.inProgress);
-      const resp = await Api.instance.get<InsumoResponse>('/api/insumo');
+      const resp = await Api.instance.get<InsumoResponse>('/api/insumo', { params });
       const data = resp.data;
       setInsumosResponse(data.insumos);
       setstatus(Status.done);
@@ -29,7 +32,7 @@ export const useInsumo = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [memoizedParams]);
   return {
     // * Propiedades
     status,

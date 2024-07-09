@@ -84,7 +84,6 @@ const HomePage = memo(() => {
                 endDate={dates[1] ?? undefined}
                 placeholderText="Fecha:"
                 onChange={(update: any) => {
-                  console.log();
                   setdates(update);
                 }}
                 withPortal

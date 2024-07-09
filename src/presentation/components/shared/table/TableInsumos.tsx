@@ -27,6 +27,12 @@ interface Props {
  */
 export const TableInsumos: FC<Props> = ({ items, isLoading }) => {
   if (isLoading) return <IsLoadingPage />;
+  if (items.length === 0)
+    return (
+      <h1 className="text-center mt-2 font-semibold text-lg">
+        No hay datos Registrados.
+      </h1>
+    );
   return (
     <>
       <table className="border-collapse w-full mt-10">

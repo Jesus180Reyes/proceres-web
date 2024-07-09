@@ -5,6 +5,11 @@ interface SideBarItem {
 }
 export const sideBatItems: SideBarItem[] = [
   {
+    title: 'Dashboard',
+    href: '/dashboard',
+    icon: 'chart',
+  },
+  {
     title: 'Inventario',
     href: '/home',
     icon: 'home',
