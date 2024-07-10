@@ -48,15 +48,27 @@ export class RouterAdapter {
         },
         {
           path: 'insumos',
-          element: <InsumosPage />,
+          element: (
+            <PrivateRoute>
+              <InsumosPage />,
+            </PrivateRoute>
+          )
         },
         {
           path: 'users',
-          element: <UsersPage />,
+          element: (
+            <PrivateRoute>
+              <UsersPage />,
+            </PrivateRoute>
+          )
         },
         {
           path: 'dashboard',
-          element: <DashboardPage />,
+          element: (
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          ),
         },
 
         { path: '*', element: <Navigate to="/" /> },
