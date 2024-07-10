@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Api } from '../../../config/api/api';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 import { PrimaryButton } from '../../components/shared/button/PrimaryButton';
@@ -49,6 +49,9 @@ const LoginPage = () => {
     e.preventDefault();
     await login();
   };
+  const token = localStorage.getItem('token');
+  const id = localStorage.getItem('id');
+  if(token && id) return <Navigate to={'/auth/loading'} replace/>
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">

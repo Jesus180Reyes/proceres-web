@@ -3,6 +3,7 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 import App from '../../App';
 import { lazy } from 'react';
 import AppAuth from '../../AppAuth';
+import { PrivateRoute } from '../../presentation/components/interceptors/PrivateRoute';
 const HomePage = lazy(() => import('../../presentation/pages/home/HomePage'));
 const LoginPage = lazy(() => import('../../presentation/pages/auth/LoginPage'));
 const LoadingPage = lazy(
@@ -10,6 +11,12 @@ const LoadingPage = lazy(
 );
 const InsumosPage = lazy(
   () => import('../../presentation/pages/insumos/InsumosPage')
+);
+const UsersPage = lazy(
+  () => import('../../presentation/pages/users/UsersPage')
+);
+const DashboardPage = lazy(
+  () => import('../../presentation/pages/dashboard/DashboardPage')
 );
 /**
  * RouterAdapter es una clase que configura el enrutador de la aplicación usando react-router-dom.
@@ -32,14 +39,24 @@ export class RouterAdapter {
         {
           // index: true,
           path: 'home',
-          element: <HomePage />,
+          element: 
+          (
+            <PrivateRoute>
+              <HomePage />,
+            </PrivateRoute>
+          )
         },
         {
           path: 'insumos',
           element: <InsumosPage />,
-          // <PrivateRoute>
-
-          // </PrivateRoute>
+        },
+        {
+          path: 'users',
+          element: <UsersPage />,
+        },
+        {
+          path: 'dashboard',
+          element: <DashboardPage />,
         },
 
         { path: '*', element: <Navigate to="/" /> },
@@ -60,6 +77,6 @@ export class RouterAdapter {
         },
       ],
     },
-    { path: '/auth/*', element: <Navigate to="/auth/login" /> },
+    { path: '/auth/*', element: <Navigate to="/auth/loading"  replace/> },
   ]);
 }
