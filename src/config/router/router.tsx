@@ -39,12 +39,11 @@ export class RouterAdapter {
         {
           // index: true,
           path: 'home',
-          element: 
-          (
+          element: (
             <PrivateRoute>
               <HomePage />,
             </PrivateRoute>
-          )
+          ),
         },
         {
           path: 'insumos',
@@ -52,7 +51,7 @@ export class RouterAdapter {
             <PrivateRoute>
               <InsumosPage />,
             </PrivateRoute>
-          )
+          ),
         },
         {
           path: 'users',
@@ -60,7 +59,7 @@ export class RouterAdapter {
             <PrivateRoute>
               <UsersPage />,
             </PrivateRoute>
-          )
+          ),
         },
         {
           path: 'dashboard',
@@ -89,6 +88,6 @@ export class RouterAdapter {
         },
       ],
     },
-    { path: '/auth/*', element: <Navigate to="/auth/loading"  replace/> },
+    { path: '/auth/*', element: <Navigate to="/auth/loading" replace /> },
   ]);
 }

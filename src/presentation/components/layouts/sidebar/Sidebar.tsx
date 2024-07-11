@@ -28,7 +28,11 @@ export const Sidebar = () => {
         <div className="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
           <div className="flex items-center justify-center h-20 shadow-md">
             {/* <h1 className="text-3xl uppercase text-indigo-500">Logo</h1> */}
-            <img className='p-5' src="https://www.losprocereshn.com/wp-content/uploads/go-x/u/c0a2fc92-e652-4c21-b82a-6b786788844a/image-640x283.png" alt="Logo" />
+            <img
+              className="p-5"
+              src="https://www.losprocereshn.com/wp-content/uploads/go-x/u/c0a2fc92-e652-4c21-b82a-6b786788844a/image-640x283.png"
+              alt="Logo"
+            />
           </div>
           <ul className="flex flex-col py-4">
             {sideBatItems.map(({ title, href, icon }, i) => {

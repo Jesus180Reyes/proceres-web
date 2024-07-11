@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  memo, useState } from 'react';
+import { memo, useState } from 'react';
 import { CustomButton } from '../../components/shared/button/CustomButton';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
@@ -19,7 +19,7 @@ import { useUser } from '../../hooks/users/useUser';
 import { PdfModal } from '../../components/home/PdfModal';
 
 const HomePage = memo(() => {
-  const [isPdfModalOpen, setisPdfModalOpen] = useState<boolean>(false)
+  const [isPdfModalOpen, setisPdfModalOpen] = useState<boolean>(false);
   const [filterCategory, setFilterCategory] = useState<Item>();
   const [filterUser, setFilterUser] = useState<Item>();
   const [dates, setdates] = useState([null, null]);
@@ -30,7 +30,7 @@ const HomePage = memo(() => {
     user: filterUser?.id,
   });
   const { users } = useUser();
- 
+
   const [open, setOpen] = useState<boolean>(false);
   const { categories } = useCategoria();
   const onOpenModal = () => setOpen(true);
@@ -103,7 +103,7 @@ const HomePage = memo(() => {
               onClick={onOpenModal}
             />
             <CustomButton
-            marginleft='ml-2'
+              marginleft="ml-2"
               title={'Exportar PDF'}
               onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
             />
@@ -114,8 +114,10 @@ const HomePage = memo(() => {
           items={inventarioResponse ?? []}
         />
         <HomeModal isOpen={open} onClose={onCloseModal} />
-        <PdfModal isOpen={isPdfModalOpen} onClose={() => setisPdfModalOpen(!isPdfModalOpen) }/>
-      
+        <PdfModal
+          isOpen={isPdfModalOpen}
+          onClose={() => setisPdfModalOpen(!isPdfModalOpen)}
+        />
       </div>
     </>
   );

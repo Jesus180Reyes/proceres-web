@@ -10,6 +10,6 @@
 .react-datepicker__day--selected,
 .react-datepicker__day--in-selecting-range,
 .react-datepicker__day--in-range {
-  background-color: #0E483A !important; /* Verde */
+  background-color: #0e483a !important; /* Verde */
   color: white !important; /* Cambia el color del texto si es necesario */
 }

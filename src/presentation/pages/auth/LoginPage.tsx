@@ -51,7 +51,7 @@ const LoginPage = () => {
   };
   const token = localStorage.getItem('token');
   const id = localStorage.getItem('id');
-  if(token && id) return <Navigate to={'/auth/loading'} replace/>
+  if (token && id) return <Navigate to={'/auth/loading'} replace />;
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">

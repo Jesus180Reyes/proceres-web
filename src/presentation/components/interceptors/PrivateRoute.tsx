@@ -14,21 +14,19 @@ export const PrivateRoute: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch();
   const token = localStorage.getItem('token');
   const id = localStorage.getItem('id');
-  const getData =async () => {
+  const getData = async () => {
     const resp = await Api.instance.get<LoginAuthResponse>(
       `/api/auth/user/${id}`
     );
     const data = resp.data;
     dispatch(login(data));
-  }
+  };
   useEffect(() => {
-    if(token || id) {
+    if (token || id) {
       getData();
     }
-    
-    
-  }, [])
-  if(!token || !id) return (<Navigate to={'/auth/loading'} replace/>)
-    
+  }, []);
+  if (!token || !id) return <Navigate to={'/auth/loading'} replace />;
+
   return children;
 };
