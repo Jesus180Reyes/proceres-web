@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useState } from 'react';
+import {  memo, useState } from 'react';
 import { CustomButton } from '../../components/shared/button/CustomButton';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
@@ -16,8 +16,10 @@ import es from 'date-fns/locale/es';
 import { useCategoria } from '../../hooks/categoria/useCategoria';
 import { capitalize } from '../../../config/extensions/string_extension';
 import { useUser } from '../../hooks/users/useUser';
+import { PdfModal } from '../../components/home/PdfModal';
 
 const HomePage = memo(() => {
+  const [isPdfModalOpen, setisPdfModalOpen] = useState<boolean>(false)
   const [filterCategory, setFilterCategory] = useState<Item>();
   const [filterUser, setFilterUser] = useState<Item>();
   const [dates, setdates] = useState([null, null]);
@@ -28,6 +30,7 @@ const HomePage = memo(() => {
     user: filterUser?.id,
   });
   const { users } = useUser();
+ 
   const [open, setOpen] = useState<boolean>(false);
   const { categories } = useCategoria();
   const onOpenModal = () => setOpen(true);
@@ -94,10 +97,15 @@ const HomePage = memo(() => {
           </div>
         </div>
         <div className="flex  w-full items-end justify-end ">
-          <div className="mr-5 ">
+          <div className="mr-5">
             <CustomButton
               title={'Agregar Producto al Inventario'}
               onClick={onOpenModal}
+            />
+            <CustomButton
+            marginleft='ml-2'
+              title={'Exportar PDF'}
+              onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
             />
           </div>
         </div>
@@ -106,6 +114,8 @@ const HomePage = memo(() => {
           items={inventarioResponse ?? []}
         />
         <HomeModal isOpen={open} onClose={onCloseModal} />
+        <PdfModal isOpen={isPdfModalOpen} onClose={() => setisPdfModalOpen(!isPdfModalOpen) }/>
+      
       </div>
     </>
   );

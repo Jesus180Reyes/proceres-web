@@ -19,11 +19,11 @@ export const sideBatItems: SideBarItem[] = [
     href: '/insumos',
     icon: 'box',
   },
-  {
-    title: 'Usuarios',
-    href: '/users',
-    icon: 'user',
-  },
+  // {
+  //   title: 'Usuarios',
+  //   href: '/users',
+  //   icon: 'user',
+  // },
 
   // {
   //   title: 'Notificaciones',
