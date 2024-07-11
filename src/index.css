@@ -6,3 +6,10 @@
   @apply min-h-screen w-[85%];
   @apply bg-gray-100;
 }
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: #0E483A !important; /* Verde */
+  color: white !important; /* Cambia el color del texto si es necesario */
+}

@@ -14,12 +14,13 @@ export default {
       //   'urbanist': 'Urbanist',
       //   'poppins':  'Poppins'
       // },
-      // colors: {
-      //   'primary': '#0F0BD9',
-      //   'whiteSmoke': '#F5F6F7',
-      //   'darkSlateGray': '#222222',
-      //   'dimGray': '#666666',
-      // },
+      colors: {
+        'primary': '#0E483A',
+        'secondary': '#D1AD79',
+        // 'whiteSmoke': '#F5F6F7',
+        // 'darkSlateGray': '#222222',
+        // 'dimGray': '#666666',
+      },
     //   fontSize: {
     //     'lite': '1rem',
     //     'base': '1.125rem',  // * 18px

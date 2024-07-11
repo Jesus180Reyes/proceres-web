@@ -39,7 +39,7 @@ export const CustomDropdownComponent: FC<Props> = ({
           disabled={disabled}
           onClick={() => setIsOpen(!isOpen)}
           id="dropdown-button"
-          className="text-left flex justify-between mb-4 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">
+          className="text-left flex justify-between mb-4 w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-secondary">
           {currentValueSelected !== undefined ? currentValueSelected : title}
           <i className="fa-solid fa-angle-down"></i>
         </button>

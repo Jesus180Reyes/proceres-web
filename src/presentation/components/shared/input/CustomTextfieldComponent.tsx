@@ -61,7 +61,7 @@ export const CustomTextfieldComponent: FC<Props> = ({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className={`border rounded-lg px-3 py-2 mt-1 mb-3 text-sm w-full ${error ? 'border-red-500' : undefined}`}
+        className={`border rounded-lg px-3 py-2 mt-1 mb-3 text-sm w-full ${error ? 'border-red-500' : undefined} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-secondary `}
       />
       {error && (
         <p className="text-red-500 text-sm">

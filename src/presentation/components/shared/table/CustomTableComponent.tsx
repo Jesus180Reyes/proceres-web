@@ -43,7 +43,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
               return (
                 <th
                   key={i}
-                  className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                  className="p-3 font-bold uppercase bg-gray-200 text-primary border border-gray-300 hidden lg:table-cell">
                   {e}
                 </th>
               );
@@ -60,13 +60,13 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                   {e.id}
                 </td>
-                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <td className="w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static">
                   {capitalize(e.nombre_producto)}
                 </td>
-                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <td className="w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static">
                   {e.cantidad}
                 </td>
-                <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                <td className="w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static">
                   <span
                     style={{ backgroundColor: e.categoria.color }}
                     className="rounded  py-1 px-3 text-xs font-bold">

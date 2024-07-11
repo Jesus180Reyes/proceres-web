@@ -27,7 +27,8 @@ export const Sidebar = () => {
       <div className="min-h-screen flex flex-row bg-gray-100 w-[15%]">
         <div className="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
           <div className="flex items-center justify-center h-20 shadow-md">
-            <h1 className="text-3xl uppercase text-indigo-500">Logo</h1>
+            {/* <h1 className="text-3xl uppercase text-indigo-500">Logo</h1> */}
+            <img className='p-5' src="https://www.losprocereshn.com/wp-content/uploads/go-x/u/c0a2fc92-e652-4c21-b82a-6b786788844a/image-640x283.png" alt="Logo" />
           </div>
           <ul className="flex flex-col py-4">
             {sideBatItems.map(({ title, href, icon }, i) => {
@@ -35,7 +36,7 @@ export const Sidebar = () => {
                 <li key={i}>
                   <a
                     onClick={() => onItemSelectedChange(href)}
-                    className={`${currentItem === href ? 'bg-green-200 rounded m-2' : undefined} cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800`}>
+                    className={`${currentItem === href ? 'bg-primary rounded m-2 text-white' : undefined} cursor-pointer flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:text-secondary text-gray-500`}>
                     <span className="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
                       <i className={icon && `bx bx-${icon}`}></i>
                     </span>
