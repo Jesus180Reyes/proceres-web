@@ -26,45 +26,54 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
   const [dates, setdates] = useState([null, null]);
   const { categories } = useCategoria();
   const { users } = useUser();
-  const [categoria, setcurrentCategory] = useState<number | undefined>(undefined);
+  const [categoria, setcurrentCategory] = useState<number | undefined>(
+    undefined
+  );
   const [user, setCurrentUser] = useState<number | undefined>(undefined);
 
-  const onSubmit = async() => {
+  const onSubmit = async () => {
     try {
       setstatus(Status.inProgress);
       await Api.instance.post('/api/inventario/pdf', {
-      categoria,
-      user,
-      startDate: dates[0],
-      endDate: dates[1],
-    });
-    setstatus(Status.done);
-    CustomModals.showCustomModal('Reporte Creado Exitosamente', 'success', `El Reporte se envio al correo: ${userAuth?.email}`)
-    onCloseModal();
-  } catch (error: any) {
+        categoria,
+        user,
+        startDate: dates[0],
+        endDate: dates[1],
+      });
+      setstatus(Status.done);
+      CustomModals.showCustomModal(
+        'Reporte Creado Exitosamente',
+        'success',
+        `El Reporte se envio al correo: ${userAuth?.email}`
+      );
+      onCloseModal();
+    } catch (error: any) {
       setstatus(Status.notStarted);
-      CustomModals.showCustomModal(`Ups! Error inesperado: ${error.message}`, 'error');
+      CustomModals.showCustomModal(
+        `Ups! Error inesperado: ${error.message}`,
+        'error'
+      );
       throw new Error(`Ups! Error inesperado: ${error.message}`);
     }
-  }
+  };
   const onCloseModal = () => {
     setCurrentUser(undefined);
     setcurrentCategory(undefined);
     setdates([null, null]);
     onClose();
-  }
+  };
 
   return (
     <>
-    <Modal open={isOpen} onClose={onCloseModal} center>
-      <div className="m-2 mt-5 mb-4">
-        <h2 className="font-semibold">Generar Reporte en PDF</h2>
-        <p className="italic text-sm text-start mb-4 w-[450px]">
-          Puedes generar un reporte en PDF y enviarlo a tu correo electrónico.
-          Utiliza los filtros opcionales para personalizar el contenido del
-          reporte.
-        </p>
-      </div>
+      <Modal open={isOpen} onClose={onCloseModal} center>
+        <div className="m-2 mt-5 mb-4">
+          <h2 className="font-semibold">Generar Reporte en PDF</h2>
+          <p className="italic text-sm text-start mb-4 w-[450px]">
+            Puedes generar un reporte en PDF y enviarlo a tu correo electrónico.
+            Utiliza los filtros opcionales para personalizar el contenido del
+            reporte.
+          </p>
+        </div>
         <CustomTextfieldComponent
           disabled
           placeholder={userAuth?.email}
@@ -119,9 +128,12 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
           </p>
         </div>
 
-        <PrimaryButton title={'Generar Reporte PDF'} onClick={onSubmit}  disabled={status === Status.inProgress}/>
-    </Modal>
+        <PrimaryButton
+          title={'Generar Reporte PDF'}
+          onClick={onSubmit}
+          disabled={status === Status.inProgress}
+        />
+      </Modal>
     </>
-
   );
 };

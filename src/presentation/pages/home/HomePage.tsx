@@ -103,7 +103,7 @@ const HomePage = memo(() => {
             />
             <CustomButton
               marginleft="ml-2"
-              marginTop='mt-2'
+              marginTop="mt-2"
               title={'Exportar PDF'}
               onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
             />
@@ -114,11 +114,11 @@ const HomePage = memo(() => {
           items={inventarioResponse ?? []}
         />
       </div>
-        <PdfModal
-          isOpen={isPdfModalOpen}
-          onClose={() => setisPdfModalOpen(!isPdfModalOpen)}
-        />
-        <HomeModal isOpen={open} onClose={onCloseModal} />
+      <PdfModal
+        isOpen={isPdfModalOpen}
+        onClose={() => setisPdfModalOpen(!isPdfModalOpen)}
+      />
+      <HomeModal isOpen={open} onClose={onCloseModal} />
     </>
   );
 });

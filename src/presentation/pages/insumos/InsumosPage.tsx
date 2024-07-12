@@ -17,7 +17,6 @@ import { useUser } from '../../hooks/users/useUser';
 import { capitalize } from '../../../config/extensions/string_extension';
 import { PdfInsumoModal } from '../../components/insumos/PdfInsumoModal';
 
-
 const InsumosPage = () => {
   const [dates, setdates] = useState([null, null]);
 
@@ -29,7 +28,7 @@ const InsumosPage = () => {
     user: filterUser?.id,
   });
   const { users } = useUser();
-  const [isPdfModal, setisPdfModal] = useState<boolean>(false)
+  const [isPdfModal, setisPdfModal] = useState<boolean>(false);
 
   return (
     <>
@@ -85,8 +84,8 @@ const InsumosPage = () => {
               onClick={() => setisOpen(!isOpen)}
             />
             <CustomButton
-              marginleft='ml-2'
-              marginTop='mt-2'
+              marginleft="ml-2"
+              marginTop="mt-2"
               title={'Exportar PDF'}
               onClick={() => setisPdfModal(!isPdfModal)}
             />
@@ -98,8 +97,10 @@ const InsumosPage = () => {
         />
       </div>
       <InsumoModal isOpen={isOpen} onCloseModal={() => setisOpen(!isOpen)} />
-      <PdfInsumoModal isOpen={isPdfModal} onClose={() => setisPdfModal(!isPdfModal)}/>
-        
+      <PdfInsumoModal
+        isOpen={isPdfModal}
+        onClose={() => setisPdfModal(!isPdfModal)}
+      />
     </>
   );
 };
