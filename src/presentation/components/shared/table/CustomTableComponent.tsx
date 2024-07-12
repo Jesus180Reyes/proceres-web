@@ -87,7 +87,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                   {capitalize(e.usuario.nombre)}
                 </td>
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                  {createdDate.toLocaleString()}
+                  {createdDate}
                 </td>
               </tr>
             );
