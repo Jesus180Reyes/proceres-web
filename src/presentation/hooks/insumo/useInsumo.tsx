@@ -23,12 +23,12 @@ export const useInsumo = (params?: any) => {
       return data;
     } catch (error: any) {
       CustomModals.showCustomModal(
-        'Ups! Error inseperado',
+        'Ups! Error inesperado',
         'error',
         error.message
       );
       setstatus(Status.notStarted);
-      throw new Error(`Ups! Error inseperado ${error.message}`);
+      throw new Error(`Ups! Error inesperado ${error.message}`);
     }
   };
 

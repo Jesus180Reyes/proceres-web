@@ -7,6 +7,7 @@ import {
   InventarioResponse,
 } from '../../../datasource/entities/responses/inventario_response';
 import { Status } from '../../../datasource/entities/status';
+import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 
 export const useInventario = (params?: any) => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
@@ -26,7 +27,11 @@ export const useInventario = (params?: any) => {
       return data;
     } catch (error: any) {
       setstatus(Status.notStarted);
-      console.log(error);
+      CustomModals.showCustomModal(
+        'Ups! Error inesperado',
+        'error',
+        error.message
+      );
       throw new Error(error.message);
     }
   };
