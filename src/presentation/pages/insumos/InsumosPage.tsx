@@ -15,6 +15,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
 import { useUser } from '../../hooks/users/useUser';
 import { capitalize } from '../../../config/extensions/string_extension';
+import { PdfInsumoModal } from '../../components/insumos/PdfInsumoModal';
+
 
 const InsumosPage = () => {
   const [dates, setdates] = useState([null, null]);
@@ -27,6 +29,7 @@ const InsumosPage = () => {
     user: filterUser?.id,
   });
   const { users } = useUser();
+  const [isPdfModal, setisPdfModal] = useState<boolean>(false)
 
   return (
     <>
@@ -81,6 +84,12 @@ const InsumosPage = () => {
               title={'Agregar Insumo al Inventario'}
               onClick={() => setisOpen(!isOpen)}
             />
+            <CustomButton
+              marginleft='ml-2'
+              marginTop='mt-2'
+              title={'Exportar PDF'}
+              onClick={() => setisPdfModal(!isPdfModal)}
+            />
           </div>
         </div>
         <TableInsumos
@@ -89,6 +98,8 @@ const InsumosPage = () => {
         />
       </div>
       <InsumoModal isOpen={isOpen} onCloseModal={() => setisOpen(!isOpen)} />
+      <PdfInsumoModal isOpen={isPdfModal} onClose={() => setisPdfModal(!isPdfModal)}/>
+        
     </>
   );
 };
