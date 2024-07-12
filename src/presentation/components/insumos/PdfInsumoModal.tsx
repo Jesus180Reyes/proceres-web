@@ -9,7 +9,6 @@ import { CustomTextfieldComponent } from '../shared/input/CustomTextfieldCompone
 import { useAppSelector } from '../../store/hooks';
 import { useUser } from '../../hooks/users/useUser';
 import { capitalize } from '../../../config/extensions/string_extension';
-import { useCategoria } from '../../hooks/categoria/useCategoria';
 import { PrimaryButton } from '../shared/button/PrimaryButton';
 import { Api } from '../../../config/api/api';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
@@ -19,7 +18,6 @@ interface Props {
 }
 export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
   const { users } = useUser();
-  const { categories } = useCategoria();
 
   const userAuth = useAppSelector(value => value.auth.user?.user);
   const [status, setstatus] = useState<Status>(Status.notStarted);
@@ -74,17 +72,6 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
         value={userAuth?.email ?? ''}
         onChange={e => console.log(e.target.value)}
         disabled={true}
-      />
-      <CustomDropdownComponent
-        disabled={status === Status.inProgress}
-        title={'Categoria:'}
-        items={
-          categories?.categorias.map(e => ({
-            id: e.id,
-            title: capitalize(e.nombre),
-          })) ?? []
-        }
-        onItemClicked={item => console.log(item)}
       />
       <CustomDropdownComponent
         disabled={status === Status.inProgress}
