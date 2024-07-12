@@ -52,7 +52,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
         </thead>
         <tbody>
           {items.map((e, i) => {
-            const createdDate = new Date(e.createdAt.toLocaleString());
+            const createdDate = new Date(e.createdAt).toLocaleString();
             return (
               <tr
                 key={i}

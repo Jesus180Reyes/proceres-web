@@ -51,7 +51,7 @@ export const TableInsumos: FC<Props> = ({ items, isLoading }) => {
         </thead>
         <tbody>
           {items.map((e, i) => {
-            const createdDate = new Date(e.createdAt.toLocaleString());
+            const createdDate = new Date(e.createdAt);
             return (
               <tr
                 key={i}

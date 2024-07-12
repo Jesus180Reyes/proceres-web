@@ -67,7 +67,6 @@ const HomePage = memo(() => {
             </div>
             <div className="w-[300px]">
               <CustomDropdownComponent
-                // disabled={status === Status.inProgress}
                 disabled={false}
                 title={'Usuario:'}
                 items={
@@ -104,6 +103,7 @@ const HomePage = memo(() => {
             />
             <CustomButton
               marginleft="ml-2"
+              marginTop='mt-2'
               title={'Exportar PDF'}
               onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
             />
@@ -113,12 +113,12 @@ const HomePage = memo(() => {
           isLoading={status === Status.inProgress}
           items={inventarioResponse ?? []}
         />
-        <HomeModal isOpen={open} onClose={onCloseModal} />
+      </div>
         <PdfModal
           isOpen={isPdfModalOpen}
           onClose={() => setisPdfModalOpen(!isPdfModalOpen)}
         />
-      </div>
+        <HomeModal isOpen={open} onClose={onCloseModal} />
     </>
   );
 });
