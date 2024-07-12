@@ -61,10 +61,11 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
   return (
     <Modal center open={isOpen} onClose={onClose}>
       <div className="m-2 mt-5 mb-4">
-        <h2 className="font-semibold">Ingresa los datos Requeridos</h2>
-        <p className="italic text-sm text-start">
-          En esta pantalla podras agregar cada Insumo establecido por la
-          empresa.
+        <h2 className="font-semibold">Generar Reporte PDF</h2>
+        <p className="italic text-sm text-start max-h-28 max-w-[450px]">
+        Puedes generar un reporte en PDF y enviarlo a tu correo electrónico.
+            Utiliza los filtros opcionales para personalizar el contenido del
+            reporte.
         </p>
       </div>
       <CustomTextfieldComponent
