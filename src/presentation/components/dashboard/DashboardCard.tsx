@@ -4,7 +4,7 @@ interface Props {
 }
 export const DashboardCard: FC<Props> = ({ children }) => {
   return (
-    <div className="h-[75%] w-[500px] max-w[500px] text-start ml-2  rounded-md mt-4 p-5  bg-white flex flex-col items-center">
+    <div className="h-[75%] w-[500px] max-w[500px] text-start ml-2  rounded-md mt-4 p-5  bg-white flex flex-col items-center max-lg:w-[100%] max-lg:">
       {children}
     </div>
   );

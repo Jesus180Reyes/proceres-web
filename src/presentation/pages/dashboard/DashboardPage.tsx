@@ -120,7 +120,7 @@ const DashboardPage = () => {
               porcentaje las áreas con mayor asignación de recursos.
             </p>
           </div>
-          <div className="w-[400px] h-[400px]">
+          <div className="w-[400px] h-[400px] max-lg:w-[300px] max-lg:h-[300px]">
             <Doughnut options={options} data={data} width={200} height={200} />
           </div>
         </DashboardCard>
