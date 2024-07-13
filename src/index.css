@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .home-container {
-  @apply min-h-screen w-[85%];
+  @apply min-h-screen h-screen w-[85%];
   @apply bg-gray-100;
 }
 

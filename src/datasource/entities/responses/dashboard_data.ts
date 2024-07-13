@@ -6,7 +6,7 @@ export interface DashboardData {
 }
 
 export interface Category {
-  totalCategories: number;
+  totalCategories?: number;
   totalProductsOnCocina: number;
   totalProductsOnCafe: number;
   totalProductsOnRestaurante: number;

@@ -5,7 +5,7 @@ interface SideBarItem {
 }
 export const sideBatItems: SideBarItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Estadisticas',
     href: '/dashboard',
     icon: 'chart',
   },
