@@ -69,7 +69,7 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
         </p>
       </div>
       <CustomTextfieldComponent
-        title={'Correo Electronico al que se enviara el Correo'}
+        title={'Este reporte se enviara al correo:'}
         value={userAuth?.email ?? ''}
         onChange={e => console.log(e.target.value)}
         disabled={true}
