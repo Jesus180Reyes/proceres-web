@@ -24,7 +24,7 @@ export const Sidebar = () => {
         href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       />
 
-      <div className="min-h-screen flex flex-row bg-gray-100 w-[15%]">
+      <div className="min-h-screen flex flex-row bg-gray-100 w-[15%] animate__animated animate__slideInLeft ">
         <div className="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
           <div className="flex items-center justify-center h-20 shadow-md">
             {/* <h1 className="text-3xl uppercase text-indigo-500">Logo</h1> */}

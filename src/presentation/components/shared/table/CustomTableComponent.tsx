@@ -36,7 +36,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
     );
   return (
     <>
-      <table className="border-collapse w-full mt-10">
+      <table className="border-collapse w-full mt-10 animate__animated animate__fadeIn">
         <thead>
           <tr>
             {columns.map((e, i) => {

@@ -3,7 +3,7 @@ import { Sidebar } from './presentation/components/layouts/sidebar/Sidebar';
 export const App = () => {
   return (
     <>
-      <div className="flex animate-fade animate-once ">
+      <div className="flex animate__animated animate__fadeIn">
         <Sidebar />
         <Outlet />
       </div>

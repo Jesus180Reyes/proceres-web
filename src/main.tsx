@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import 'animate.css';
 import { RouterProvider } from 'react-router-dom';
 import { RouterAdapter } from './config/router/router';
 import { IsLoadingPage } from './presentation/components/shared/loading/IsLoadingPage';

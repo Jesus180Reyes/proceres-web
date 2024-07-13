@@ -36,7 +36,7 @@ export const CustomCard = () => {
   if (status === Status.inProgress) return <IsLoadingPage />;
   return (
     <>
-      <div className="flex flex-wrap   mb-4">
+      <div className="flex flex-wrap   mb-4 animate__animated animate__fadeIn">
         {cardData.map((e, i) => {
           return (
             <div key={i} className="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4">
