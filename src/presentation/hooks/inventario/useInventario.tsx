@@ -24,7 +24,6 @@ export const useInventario = (params?: any) => {
       const data = resp.data;
       setinventarioResponse(data.inventario);
       setstatus(Status.done);
-      console.log(data);
       return data;
     } catch (error: any) {
       setstatus(Status.notStarted);
