@@ -24,10 +24,12 @@ const HomePage = memo(() => {
   const [filterUser, setFilterUser] = useState<Item>();
   const [dates, setdates] = useState([null, null]);
   const { status, inventarioResponse } = useInventario({
+    filters: {
     categoria: filterCategory?.id,
     startDate: dates[0],
     endDate: dates[1],
     user: filterUser?.id,
+  },
   });
   const { users } = useUser();
 

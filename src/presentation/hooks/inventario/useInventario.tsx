@@ -17,13 +17,14 @@ export const useInventario = (params?: any) => {
   const getData = async (): Promise<InventarioResponse> => {
     try {
       setstatus(Status.inProgress);
-      const resp = await Api.instance.get<InventarioResponse>(
-        '/api/inventario/',
-        { params }
+      const resp = await Api.instance.post<InventarioResponse>(
+        '/api/inventario/getAll',
+        params
       );
       const data = resp.data;
       setinventarioResponse(data.inventario);
       setstatus(Status.done);
+      console.log(data);
       return data;
     } catch (error: any) {
       setstatus(Status.notStarted);

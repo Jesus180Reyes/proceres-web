@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { Inventario } from '../../../../datasource/entities/responses/inventario_response';
 import { capitalize } from '../../../../config/extensions/string_extension';
 import { IsLoadingPage } from '../loading/IsLoadingPage';
+import moment from 'moment';
 
 const columns: string[] = [
   'Codigo',
@@ -52,7 +53,8 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
         </thead>
         <tbody>
           {items.map((e, i) => {
-            const createdDate = new Date(e.createdAt).toLocaleString();
+            // const createdDate = new Date(e.createdAt);
+            const createdDate = moment(e.createdAt).local();
             return (
               <tr
                 key={i}
@@ -87,7 +89,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                   {capitalize(e.usuario.nombre)}
                 </td>
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                  {createdDate}
+                  {createdDate.format('DD-MM-YYYY HH:mm')}
                 </td>
               </tr>
             );
