@@ -71,7 +71,7 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
       <CustomTextfieldComponent
         title={'Este reporte se enviara al correo:'}
         value={userAuth?.email ?? ''}
-        onChange={e => console.log(e.target.value)}
+        onChange={_ => _}
         disabled={true}
       />
       <CustomDropdownComponent
@@ -83,7 +83,7 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
             title: capitalize(e.nombre),
           })) ?? []
         }
-        onItemClicked={item => console.log(item)}
+        onItemClicked={item => setCurrentUser(item.id)}
       />
       <div className="mt-5">
         <DatePicker

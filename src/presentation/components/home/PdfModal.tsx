@@ -78,7 +78,7 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
           disabled
           placeholder={userAuth?.email}
           title={'Este reporte se enviara al correo:'}
-          onChange={e => console.log(e.target.value)}
+          onChange={_ => _}
         />
         <CustomDropdownComponent
           disabled={false}
