@@ -6,7 +6,7 @@ import {
   Item,
 } from '../shared/dropdown/CustomDropdownComponent';
 import { CustomTextfieldComponent } from '../shared/input/CustomTextfieldComponent';
-import { FC, useState, memo } from 'react';
+import { FC, useState, memo, ChangeEvent } from 'react';
 import { Api } from '../../../config/api/api';
 import { capitalize } from '../../../config/extensions/string_extension';
 import { useForm } from '../../hooks/form/useForm';
@@ -15,12 +15,22 @@ import { Status } from '../../../datasource/entities/status';
 import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 import { useCategoria } from '../../hooks/categoria/useCategoria';
 import { useInventario } from '../../hooks/inventario/useInventario';
+import { DropzoneFileComponent } from '../shared/dropzone_file/DropzoneFileComponent';
+import { Utils } from '../../../config/helpers/utils/utils';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
+  //  const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const [files, setFiles] = useState<File>();
+    const [filePreview, setFilePreview] = useState<string | null>(null)
+    const onFileChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setFiles(e.target?.files?.[0] );
+        const fileUrl = Utils.convertFileImageToUrlPreview(e);
+        setFilePreview(fileUrl);
+    }
   const { categories } = useCategoria();
   const { getData: getInventario } = useInventario();
   const [status, setstatus] = useState<Status>(Status.notStarted);
@@ -36,6 +46,8 @@ export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
     resetForm();
     setHasInputError(false);
     setCurrentCategorie(undefined);
+    setFilePreview(null);
+    setFiles(undefined);
   };
 
   const createProduct = async () => {
@@ -53,7 +65,15 @@ export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
         cantidad: values.cantidad,
         observacion_general: values.observacion_general,
         categoria_id: currentCategorie?.id,
-      });
+        files: files,
+      },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      }
+     );
+     console.log(files);
       resetForm();
       setHasInputError(false);
       setCurrentCategorie(undefined);
@@ -120,6 +140,7 @@ export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
           onChange={handleChange}
           value={values.observacion_general}
         />
+        <DropzoneFileComponent onFileChangeHandler={onFileChangeHandler } filePreview={filePreview} name={files?.name ?? ''} files={files}/>
         <PrimaryButton
           onClick={createProduct}
           disabled={status === Status.inProgress}
