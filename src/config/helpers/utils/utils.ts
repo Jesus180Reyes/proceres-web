@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeEvent } from "react";
+import { ChangeEvent } from 'react';
 
 export class Utils {
   static encodeToUrlEncoded = (text: string): string => {
@@ -7,9 +7,11 @@ export class Utils {
     return encodedText;
   };
 
-  static convertFileImageToUrlPreview = (e: ChangeEvent<HTMLInputElement>): string => {
+  static convertFileImageToUrlPreview = (
+    e: ChangeEvent<HTMLInputElement>
+  ): string => {
     const fileUrl = URL.createObjectURL(e.target.files?.[0] as any);
 
     return fileUrl;
-  }
+  };
 }

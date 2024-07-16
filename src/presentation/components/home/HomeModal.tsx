@@ -24,13 +24,13 @@ interface Props {
 }
 export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
   //  const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const [files, setFiles] = useState<File>();
-    const [filePreview, setFilePreview] = useState<string | null>(null)
-    const onFileChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setFiles(e.target?.files?.[0] );
-        const fileUrl = Utils.convertFileImageToUrlPreview(e);
-        setFilePreview(fileUrl);
-    }
+  const [files, setFiles] = useState<File>();
+  const [filePreview, setFilePreview] = useState<string | null>(null);
+  const onFileChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setFiles(e.target?.files?.[0]);
+    const fileUrl = Utils.convertFileImageToUrlPreview(e);
+    setFilePreview(fileUrl);
+  };
   const { categories } = useCategoria();
   const { getData: getInventario } = useInventario();
   const [status, setstatus] = useState<Status>(Status.notStarted);
@@ -60,20 +60,22 @@ export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
       );
     try {
       setstatus(Status.inProgress);
-      await Api.instance.post('/api/inventario', {
-        nombre_producto: values.nombre_producto,
-        cantidad: values.cantidad,
-        observacion_general: values.observacion_general,
-        categoria_id: currentCategorie?.id,
-        files: files,
-      },
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+      await Api.instance.post(
+        '/api/inventario',
+        {
+          nombre_producto: values.nombre_producto,
+          cantidad: values.cantidad,
+          observacion_general: values.observacion_general,
+          categoria_id: currentCategorie?.id,
+          files: files,
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         }
-      }
-     );
-     console.log(files);
+      );
+      console.log(files);
       resetForm();
       setHasInputError(false);
       setCurrentCategorie(undefined);
@@ -140,7 +142,12 @@ export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
           onChange={handleChange}
           value={values.observacion_general}
         />
-        <DropzoneFileComponent onFileChangeHandler={onFileChangeHandler } filePreview={filePreview} name={files?.name ?? ''} files={files}/>
+        <DropzoneFileComponent
+          onFileChangeHandler={onFileChangeHandler}
+          filePreview={filePreview}
+          name={files?.name ?? ''}
+          files={files}
+        />
         <PrimaryButton
           onClick={createProduct}
           disabled={status === Status.inProgress}
