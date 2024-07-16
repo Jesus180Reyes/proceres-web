@@ -14,7 +14,7 @@ export const DropzoneBox: FC<Props> = ({ onFileChange }) => {
           onChange={onFileChange}
           type="file"
           multiple={false}
-          accept="image/jpeg,image/png,image/gif"
+          accept="image/jpg,image/png"
           className="relative cursor-pointer  block opacity-0 w-full h-full z-50"
         />
 
