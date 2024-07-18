@@ -87,9 +87,7 @@ const HomePage = memo(() => {
                 startDate={dates[0] ?? undefined}
                 endDate={dates[1] ?? undefined}
                 placeholderText="Fecha:"
-                onChange={(update: any) => {
-                  setdates(update);
-                }}
+                onChange={(update: any) => setdates(update)}
                 withPortal
                 locale={es as any}
                 dateFormat={'dd-MM-yyyy'}

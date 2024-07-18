@@ -24,10 +24,10 @@ export const DropzoneBox: FC<Props> = ({ onFileChange }) => {
           </div>
           <div>
             <h4>
-              Arrastra y suelta archivos en cualquier parte para subirlos
+              Arrastra y suelta imágenes en cualquier parte para subirlos
               <p>o</p>
             </h4>
-            <p>Selecciona Archivo</p>
+            <p>Selecciona Imagen</p>
           </div>
         </div>
       </div>

@@ -9,11 +9,12 @@ export interface Inventario {
   cantidad: number;
   categoria_id: number;
   user_id: number;
-  observacion_general: null | string;
+  observacion_general: string;
   createdAt: Date;
   updatedAt: Date;
   categoria: Categoria;
   usuario: Usuario;
+  imgUrl: string | null
 }
 
 export interface Categoria {

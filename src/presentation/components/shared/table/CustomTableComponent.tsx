@@ -1,10 +1,9 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-
-import { FC } from 'react';
+import { FC,  useState } from 'react';
 import { Inventario } from '../../../../datasource/entities/responses/inventario_response';
 import { capitalize } from '../../../../config/extensions/string_extension';
 import { IsLoadingPage } from '../loading/IsLoadingPage';
 import moment from 'moment';
+import { ElementInsumoModal } from '../../home/ElementInsumoModal';
 
 const columns: string[] = [
   'Codigo',
@@ -13,6 +12,7 @@ const columns: string[] = [
   'Categoria de Producto',
   'Creado Por:',
   'Fecha de Creacion',
+  'Vista'
 ];
 interface Props {
   items: Inventario[];
@@ -28,6 +28,8 @@ interface Props {
  * @returns {JSX.Element} Una tabla estilizada con las propiedades dadas.
  */
 export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
+  const [isOpen, setisOpen] = useState<boolean>(false);
+  const [currentIdSelected, setcurrentIdSelected] = useState<number>();
   if (isLoading) return <IsLoadingPage />;
   if (items.length === 0)
     return (
@@ -57,6 +59,10 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
             const createdDate = moment(e.createdAt).local();
             return (
               <tr
+                onClick={()=> {
+                  setisOpen(!isOpen)
+                  setcurrentIdSelected(e.id)
+                } }
                 key={i}
                 className=" cursor-pointer bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
@@ -74,16 +80,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                     className="rounded  py-1 px-3 text-xs font-bold">
                     {capitalize(e.categoria.nombre)}
                   </span>
-                  {/* <a
-                            href="#"
-                            className="text-blue-400 hover:text-blue-600 underline">
-                            Edit
-                          </a>
-                          <a
-                            href="#"
-                            className="text-blue-400 hover:text-blue-600 underline pl-6">
-                            Remove
-                          </a> */}
+                
                 </td>
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                   {capitalize(e.usuario.nombre)}
@@ -91,11 +88,24 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                   {createdDate.format('DD-MM-YYYY HH:mm')}
                 </td>
+                <td className='w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static'>
+                <a
+                onClick={()=> {
+                  setisOpen(!isOpen)
+                  setcurrentIdSelected(e.id)
+                } }
+                className="text-blue-400 hover:text-blue-600 underline text-center">
+                            Ver mas
+                          </a>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+          <ElementInsumoModal id={currentIdSelected ?? 0} isOpen={isOpen} onClose={()=> setisOpen(!isOpen)} />
+      
     </>
   );
 };
+
