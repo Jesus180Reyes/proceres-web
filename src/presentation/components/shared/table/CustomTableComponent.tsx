@@ -30,6 +30,10 @@ interface Props {
 export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
   const [isOpen, setisOpen] = useState<boolean>(false);
   const [currentIdSelected, setcurrentIdSelected] = useState<number>();
+  const onUserClickElement = (id: number) => {
+    setisOpen(!isOpen);
+    setcurrentIdSelected(id);
+  }
   if (isLoading) return <IsLoadingPage />;
   if (items.length === 0)
     return (
@@ -59,10 +63,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
             const createdDate = moment(e.createdAt).local();
             return (
               <tr
-                onClick={() => {
-                  setisOpen(!isOpen);
-                  setcurrentIdSelected(e.id);
-                }}
+                onClick={()=> onUserClickElement(e.id)}
                 key={i}
                 className=" cursor-pointer bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
@@ -89,10 +90,7 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                 </td>
                 <td className="w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static">
                   <a
-                    onClick={() => {
-                      setisOpen(!isOpen);
-                      setcurrentIdSelected(e.id);
-                    }}
+                    onClick={()=> onUserClickElement(e.id)}
                     className="text-blue-400 hover:text-blue-600 underline text-center">
                     Ver mas
                   </a>

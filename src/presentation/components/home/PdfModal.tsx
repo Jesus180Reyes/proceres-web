@@ -68,7 +68,7 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
       <Modal open={isOpen} onClose={onCloseModal} center>
         <div className="m-2 mt-5 mb-4">
           <h2 className="font-semibold">Generar Reporte en PDF</h2>
-          <p className="italic text-sm text-start mb-4 w-[450px]">
+          <p className="italic text-sm text-start max-h-28 max-w-[450px]">
             Puedes generar un reporte en PDF y enviarlo a tu correo electrónico.
             Utiliza los filtros opcionales para personalizar el contenido del
             reporte.
@@ -120,13 +120,13 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
             dateFormat={'dd-MM-yyyy'}
           />
         </div>
-        <div className="flex w-[450px]">
-          <b className="mr-2 text-sm">Nota:</b>
-          <p className="text-sm">
-            Si no aplicas filtros, el reporte incluirá toda la información
-            disponible.
-          </p>
-        </div>
+        <div className="flex">
+        <b className="mr-2 text-sm">Nota:</b>
+        <p className="text-sm">
+          Si no aplicas filtros, el reporte incluirá toda la información
+          disponible.
+        </p>
+      </div>
 
         <PrimaryButton
           title={'Generar Reporte PDF'}

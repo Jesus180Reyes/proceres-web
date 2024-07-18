@@ -45,7 +45,7 @@ export const ElementInsumoModal: FC<PropsModal> = ({ id, isOpen, onClose }) => {
               <h2 className="font-semibold">
                 Información Detallada del Producto
               </h2>
-              <p className="italic text-sm text-start mb-4 w-[400px]">
+              <p className="italic text-sm text-start max-h-28 max-w-[450px]">
                 Revisa la información completa del producto seleccionado. Esta
                 sección incluye el nombre, cantidad, categoría, observaciones
                 adicionales y el usuario responsable de su registro.
