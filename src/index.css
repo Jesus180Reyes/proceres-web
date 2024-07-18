@@ -4,6 +4,7 @@
 
 .home-container {
   @apply min-h-full w-[85%];
+  @apply max-lg:w-[100%];
   @apply bg-gray-100;
 }
 
