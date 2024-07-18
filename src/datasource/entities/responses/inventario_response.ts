@@ -14,7 +14,7 @@ export interface Inventario {
   updatedAt: Date;
   categoria: Categoria;
   usuario: Usuario;
-  imgUrl: string | null
+  imgUrl: string | null;
 }
 
 export interface Categoria {

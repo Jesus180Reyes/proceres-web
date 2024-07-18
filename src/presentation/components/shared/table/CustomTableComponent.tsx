@@ -1,4 +1,4 @@
-import { FC,  useState } from 'react';
+import { FC, useState } from 'react';
 import { Inventario } from '../../../../datasource/entities/responses/inventario_response';
 import { capitalize } from '../../../../config/extensions/string_extension';
 import { IsLoadingPage } from '../loading/IsLoadingPage';
@@ -12,7 +12,7 @@ const columns: string[] = [
   'Categoria de Producto',
   'Creado Por:',
   'Fecha de Creacion',
-  'Vista'
+  'Vista',
 ];
 interface Props {
   items: Inventario[];
@@ -59,10 +59,10 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
             const createdDate = moment(e.createdAt).local();
             return (
               <tr
-                onClick={()=> {
-                  setisOpen(!isOpen)
-                  setcurrentIdSelected(e.id)
-                } }
+                onClick={() => {
+                  setisOpen(!isOpen);
+                  setcurrentIdSelected(e.id);
+                }}
                 key={i}
                 className=" cursor-pointer bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
@@ -80,7 +80,6 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                     className="rounded  py-1 px-3 text-xs font-bold">
                     {capitalize(e.categoria.nombre)}
                   </span>
-                
                 </td>
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                   {capitalize(e.usuario.nombre)}
@@ -88,24 +87,26 @@ export const CustomTableComponent: FC<Props> = ({ items, isLoading }) => {
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                   {createdDate.format('DD-MM-YYYY HH:mm')}
                 </td>
-                <td className='w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static'>
-                <a
-                onClick={()=> {
-                  setisOpen(!isOpen)
-                  setcurrentIdSelected(e.id)
-                } }
-                className="text-blue-400 hover:text-blue-600 underline text-center">
-                            Ver mas
-                          </a>
+                <td className="w-full lg:w-auto p-3 text-primary text-center border border-b block lg:table-cell relative lg:static">
+                  <a
+                    onClick={() => {
+                      setisOpen(!isOpen);
+                      setcurrentIdSelected(e.id);
+                    }}
+                    className="text-blue-400 hover:text-blue-600 underline text-center">
+                    Ver mas
+                  </a>
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-          <ElementInsumoModal id={currentIdSelected ?? 0} isOpen={isOpen} onClose={()=> setisOpen(!isOpen)} />
-      
+      <ElementInsumoModal
+        id={currentIdSelected ?? 0}
+        isOpen={isOpen}
+        onClose={() => setisOpen(!isOpen)}
+      />
     </>
   );
 };
-
