@@ -77,8 +77,7 @@ const InsumosPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex  w-full items-end justify-end ">
-          <div className="mr-5 ">
+        <div className="w-full flex gap-2 items-end justify-end flex-wrap max-lg:flex-col max-lg:items-center max-lg:justify-center max-sm:items-center max-xl:items-center ">
             <CustomButton
               title={'Agregar Insumo al Inventario'}
               onClick={() => setisOpen(!isOpen)}
@@ -89,7 +88,6 @@ const InsumosPage = () => {
               title={'Exportar PDF'}
               onClick={() => setisPdfModal(!isPdfModal)}
             />
-          </div>
         </div>
         <TableInsumos
           isLoading={status === Status.inProgress}
