@@ -95,20 +95,17 @@ const HomePage = memo(() => {
             </div>
           </div>
         </div>
-        <div className="flex  w-full items-end justify-end ">
-          <div className="mr-5">
+          <div className="w-full flex gap-2 items-end justify-end flex-wrap max-lg:flex-col max-lg:items-center max-lg:justify-center max-sm:items-center max-xl:items-center">
             <CustomButton
               title={'Agregar Producto al Inventario'}
               onClick={onOpenModal}
             />
             <CustomButton
-              marginleft="ml-2"
-              marginTop="mt-2"
+            marginRight='mr-3'
               title={'Exportar PDF'}
               onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
             />
-          </div>
-        </div>
+            </div>
         <CustomTableComponent
           isLoading={status === Status.inProgress}
           items={inventarioResponse ?? []}
