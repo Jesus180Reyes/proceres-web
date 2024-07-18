@@ -5,8 +5,8 @@ export const App = () => {
   return (
     <>
       <div className="flex animate__animated animate__fadeIn">
-      <Menu/>
-       <Sidebar />
+        <Menu />
+        <Sidebar />
         <Outlet />
       </div>
     </>

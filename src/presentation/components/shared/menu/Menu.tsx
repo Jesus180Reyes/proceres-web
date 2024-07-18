@@ -1,9 +1,9 @@
-import { useState, FC } from "react";
-import { FaBars } from "react-icons/fa";
-import { IoCloseSharp } from "react-icons/io5";
-import { sideBatItems } from "../../../../datasource/entities/sidebaritems_data";
-import { useNavigate } from "react-router-dom";
-import "./menu.css";
+import { useState, FC } from 'react';
+import { FaBars } from 'react-icons/fa';
+import { IoCloseSharp } from 'react-icons/io5';
+import { sideBatItems } from '../../../../datasource/entities/sidebaritems_data';
+import { useNavigate } from 'react-router-dom';
+import './menu.css';
 
 /**
  * Props para el componente SideMenu
@@ -11,8 +11,8 @@ import "./menu.css";
  * @property {boolean} show - Indica si el menú lateral se muestra u oculta
  */
 interface SideMenuProps {
-    handleHide: () => void;
-    show: boolean;
+  handleHide: () => void;
+  show: boolean;
 }
 
 /**
@@ -21,22 +21,22 @@ interface SideMenuProps {
  * Al hacer clic en el icono de barras, muestra el menú lateral.
  */
 const Menu: FC = () => {
-    const [hide, setHide] = useState<boolean>(true);
+  const [hide, setHide] = useState<boolean>(true);
 
-    /**
-     * Alterna el estado de ocultar/mostrar el menú lateral
-     */
-    const toggleHide = () => setHide(!hide);
+  /**
+   * Alterna el estado de ocultar/mostrar el menú lateral
+   */
+  const toggleHide = () => setHide(!hide);
 
-    return (
-        <>
-            {hide ? (
-                <FaBars className="icon-menu" onClick={toggleHide} />
-            ) : (
-                <SideMenu show={hide} handleHide={toggleHide} />
-            )}
-        </>
-    );
+  return (
+    <>
+      {hide ? (
+        <FaBars className="icon-menu" onClick={toggleHide} />
+      ) : (
+        <SideMenu show={hide} handleHide={toggleHide} />
+      )}
+    </>
+  );
 };
 
 /**
@@ -47,37 +47,37 @@ const Menu: FC = () => {
  * @param {boolean} props.show - Indica si el menú lateral se muestra u oculta
  */
 const SideMenu: FC<SideMenuProps> = ({ handleHide, show }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    /**
-     * Maneja el clic en un elemento del menú para navegar a la ruta especificada
-     * y ocultar el menú lateral.
-     * @param {string} route - La ruta a la que se debe navegar
-     */
-    const handleItemClick = (route: string) => {
-        navigate(route);
-        handleHide();
-    };
+  /**
+   * Maneja el clic en un elemento del menú para navegar a la ruta especificada
+   * y ocultar el menú lateral.
+   * @param {string} route - La ruta a la que se debe navegar
+   */
+  const handleItemClick = (route: string) => {
+    navigate(route);
+    handleHide();
+  };
 
-    return (
-        <div className={show.toString()}>
-            <IoCloseSharp onClick={handleHide} className="icon-menu mb-6" />
-            <div className="header">
-                <img
-                    className=""
-                    src="https://www.losprocereshn.com/wp-content/uploads/go-x/u/c0a2fc92-e652-4c21-b82a-6b786788844a/image-640x283.png"
-                    alt="Logo"
-                />
-            </div>
-            {sideBatItems.map((item, index) => (
-                <ul key={index} className="links-container">
-                    <a className="link" onClick={() => handleItemClick(item.href)}>
-                        {item.title}
-                    </a>
-                </ul>
-            ))}
-        </div>
-    );
+  return (
+    <div className={show.toString()}>
+      <IoCloseSharp onClick={handleHide} className="icon-menu mb-6" />
+      <div className="header">
+        <img
+          className=""
+          src="https://www.losprocereshn.com/wp-content/uploads/go-x/u/c0a2fc92-e652-4c21-b82a-6b786788844a/image-640x283.png"
+          alt="Logo"
+        />
+      </div>
+      {sideBatItems.map((item, index) => (
+        <ul key={index} className="links-container">
+          <a className="link" onClick={() => handleItemClick(item.href)}>
+            {item.title}
+          </a>
+        </ul>
+      ))}
+    </div>
+  );
 };
 
 export default Menu;

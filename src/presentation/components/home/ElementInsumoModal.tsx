@@ -36,7 +36,11 @@ export const ElementInsumoModal: FC<PropsModal> = ({ id, isOpen, onClose }) => {
 
   return (
     <>
-      <Modal styles={{modal: {borderRadius: '15px'}}} center open={isOpen} onClose={onClose}>
+      <Modal
+        styles={{ modal: { borderRadius: '15px' } }}
+        center
+        open={isOpen}
+        onClose={onClose}>
         {status === Status.inProgress ? (
           <IsLoadingPage />
         ) : (

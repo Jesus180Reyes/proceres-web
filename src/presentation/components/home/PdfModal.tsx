@@ -65,7 +65,11 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal styles={{modal: {borderRadius: '15px'}}} open={isOpen} onClose={onCloseModal} center>
+      <Modal
+        styles={{ modal: { borderRadius: '15px' } }}
+        open={isOpen}
+        onClose={onCloseModal}
+        center>
         <div className="m-2 mt-5 mb-4">
           <h2 className="font-semibold">Generar Reporte en PDF</h2>
           <p className="italic text-sm text-start max-h-28 max-w-[450px]">
@@ -121,12 +125,12 @@ export const PdfModal: FC<Props> = ({ isOpen, onClose }) => {
           />
         </div>
         <div className="flex">
-        <b className="mr-2 text-sm">Nota:</b>
-        <p className="text-sm">
-          Si no aplicas filtros, el reporte incluirá toda la información
-          disponible.
-        </p>
-      </div>
+          <b className="mr-2 text-sm">Nota:</b>
+          <p className="text-sm">
+            Si no aplicas filtros, el reporte incluirá toda la información
+            disponible.
+          </p>
+        </div>
 
         <PrimaryButton
           title={'Generar Reporte PDF'}
