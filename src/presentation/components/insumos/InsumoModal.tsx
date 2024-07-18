@@ -49,7 +49,7 @@ export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
   };
   return (
     <>
-      <Modal open={isOpen} onClose={onClosedModal} center>
+      <Modal styles={{modal: {borderRadius: '15px'}}} open={isOpen} onClose={onClosedModal} center>
         <div className="m-2 mt-5 mb-4">
           <h2 className="font-semibold">Ingresa los datos Requeridos</h2>
           <p className="italic text-sm text-start">

@@ -49,7 +49,7 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
         'error'
       );
       throw new Error(`Ups! Error inesperado: ${error.message}`);
-    }
+    } 
   };
   const onCloseModal = () => {
     setCurrentUser(undefined);
@@ -59,7 +59,7 @@ export const PdfInsumoModal: FC<Props> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal center open={isOpen} onClose={onClose}>
+    <Modal styles={{modal: {borderRadius: '15px'}}} center open={isOpen} onClose={onClose}>
       <div className="m-2 mt-5 mb-4">
         <h2 className="font-semibold">Generar Reporte PDF</h2>
         <p className="italic text-sm text-start max-h-28 max-w-[450px]">
