@@ -76,15 +76,15 @@ const SideMenu: FC<SideMenuProps> = ({ handleHide, show }) => {
           alt="Logo"
         />
       </div>
-      <ul  className="links-container">
-      {...sideBatItems.map((item) => (
+      <ul className="links-container">
+        {...sideBatItems.map(item => (
           <a className="link" onClick={() => handleItemClick(item.href)}>
             {item.title}
           </a>
-      ))}
-      <a className="link" onClick={(onLogout)}>
-            Cerrar Sesíon
-          </a>
+        ))}
+        <a className="link" onClick={onLogout}>
+          Cerrar Sesíon
+        </a>
       </ul>
     </div>
   );

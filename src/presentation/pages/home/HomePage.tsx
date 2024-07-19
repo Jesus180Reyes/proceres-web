@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo,  useState } from 'react';
+import { memo, useState } from 'react';
 import { CustomButton } from '../../components/shared/button/CustomButton';
 import { CustomTableComponent } from '../../components/shared/table/CustomTableComponent';
 import { HomeModal } from '../../components/home/HomeModal';
@@ -23,7 +23,7 @@ const HomePage = memo(() => {
   const { categories } = useCategoria();
   const [dates, setdates] = useState([null, null]);
   const { users } = useUser();
-  const {inventarioResponse, status} = useInventario({
+  const { inventarioResponse, status } = useInventario({
     filters: {
       categoria: filterCategory?.id,
       startDate: dates[0],
@@ -40,19 +40,25 @@ const HomePage = memo(() => {
         <div>
           <CustomCard />
         </div>
-        <HomeFIlterView categories={categories} setFilterCategory={setFilterCategory} setFilterUser={setFilterUser}
-         users={users} dates={dates} setdates={setdates}/>
-          <div className="w-full flex gap-2 items-end justify-end flex-wrap max-lg:flex-col max-lg:items-center max-lg:justify-center max-sm:items-center max-xl:items-center">
-            <CustomButton
-              title={'Agregar Producto al Inventario'}
-              onClick={onOpenModal}
-            />
-            <CustomButton
-            marginRight='mr-3'
-              title={'Exportar PDF'}
-              onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
-            />
-            </div>
+        <HomeFIlterView
+          categories={categories}
+          setFilterCategory={setFilterCategory}
+          setFilterUser={setFilterUser}
+          users={users}
+          dates={dates}
+          setdates={setdates}
+        />
+        <div className="w-full flex gap-2 items-end justify-end flex-wrap max-lg:flex-col max-lg:items-center max-lg:justify-center max-sm:items-center max-xl:items-center">
+          <CustomButton
+            title={'Agregar Producto al Inventario'}
+            onClick={onOpenModal}
+          />
+          <CustomButton
+            marginRight="mr-3"
+            title={'Exportar PDF'}
+            onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
+          />
+        </div>
         <CustomTableComponent
           isLoading={status === Status.inProgress}
           items={inventarioResponse ?? []}

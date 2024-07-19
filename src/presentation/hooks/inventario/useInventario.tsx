@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {  useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Api } from '../../../config/api/api';
 import {
   Inventario,
@@ -15,14 +15,14 @@ export const useInventario = (params?: any) => {
   // const memoizedParams = useMemo(() => params, [JSON.stringify(params)]);
   const memoizedParams = JSON.stringify(params);
 
-  const getData =   useCallback( async(): Promise<InventarioResponse> => {
+  const getData = useCallback(async (): Promise<InventarioResponse> => {
     try {
       setstatus(Status.inProgress);
       const resp = await Api.instance.post<InventarioResponse>(
         '/api/inventario/getAll',
         params
       );
-      console.log(params)
+      console.log(params);
       const data = resp.data;
       setinventarioResponse(data.inventario);
       setstatus(Status.done);
