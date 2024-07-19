@@ -22,7 +22,6 @@ export const useInventario = (params?: any) => {
         '/api/inventario/getAll',
         params
       );
-      console.log(params);
       const data = resp.data;
       setinventarioResponse(data.inventario);
       setstatus(Status.done);
