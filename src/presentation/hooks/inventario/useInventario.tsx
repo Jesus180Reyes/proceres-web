@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useMemo, useState } from 'react';
+import {  useCallback, useEffect, useState } from 'react';
 import { Api } from '../../../config/api/api';
 import {
   Inventario,
@@ -12,15 +12,17 @@ import { CustomModals } from '../../../config/helpers/modals/custom_modals';
 export const useInventario = (params?: any) => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
   const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>();
-  const memoizedParams = useMemo(() => params, [JSON.stringify(params)]);
+  // const memoizedParams = useMemo(() => params, [JSON.stringify(params)]);
+  const memoizedParams = JSON.stringify(params);
 
-  const getData = async (): Promise<InventarioResponse> => {
+  const getData =   useCallback( async(): Promise<InventarioResponse> => {
     try {
       setstatus(Status.inProgress);
       const resp = await Api.instance.post<InventarioResponse>(
         '/api/inventario/getAll',
         params
       );
+      console.log(params)
       const data = resp.data;
       setinventarioResponse(data.inventario);
       setstatus(Status.done);
@@ -34,10 +36,10 @@ export const useInventario = (params?: any) => {
       );
       throw new Error(error.message);
     }
-  };
+  }, [memoizedParams]);
   useEffect(() => {
     getData();
-  }, [memoizedParams]);
+  }, [getData]);
 
   return {
     // * Propiedades
