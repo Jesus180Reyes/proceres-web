@@ -4,6 +4,8 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { sideBatItems } from '../../../../datasource/entities/sidebaritems_data';
 import { useNavigate } from 'react-router-dom';
 import './menu.css';
+import { logOut } from '../../../store/slices/auth/auth';
+import { useAppDispatch } from '../../../store/hooks';
 
 /**
  * Props para el componente SideMenu
@@ -58,6 +60,11 @@ const SideMenu: FC<SideMenuProps> = ({ handleHide, show }) => {
     navigate(route);
     handleHide();
   };
+  const dispatch = useAppDispatch();
+  const onLogout = () => {
+    dispatch(logOut());
+    navigate('/auth/login', { replace: true });
+  };
 
   return (
     <div className={show.toString()}>
@@ -69,13 +76,16 @@ const SideMenu: FC<SideMenuProps> = ({ handleHide, show }) => {
           alt="Logo"
         />
       </div>
-      {sideBatItems.map((item, index) => (
-        <ul key={index} className="links-container">
+      <ul  className="links-container">
+      {...sideBatItems.map((item) => (
           <a className="link" onClick={() => handleItemClick(item.href)}>
             {item.title}
           </a>
-        </ul>
       ))}
+      <a className="link" onClick={(onLogout)}>
+            Cerrar Sesíon
+          </a>
+      </ul>
     </div>
   );
 };
