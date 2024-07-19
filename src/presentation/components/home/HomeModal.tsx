@@ -75,7 +75,6 @@ export const HomeModal: FC<Props> = memo(({ isOpen, onClose }) => {
           },
         }
       );
-      console.log(files);
       resetForm();
       setHasInputError(false);
       setCurrentCategorie(undefined);

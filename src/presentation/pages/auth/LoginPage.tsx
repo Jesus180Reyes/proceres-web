@@ -36,13 +36,13 @@ const LoginPage = () => {
       navigate('/home', { replace: true });
       setstatus(Status.done);
     } catch (error: any) {
-      console.log(error);
       setstatus(Status.notStarted);
       CustomModals.showCustomModal(
         'Credenciales Incorrectas',
         'error',
         error.response.data.msg
       );
+      throw new Error(`Ups! Error no esperado ${error}`)
     }
   };
   const onSubmit = async (e: any) => {

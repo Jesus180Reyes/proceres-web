@@ -34,12 +34,12 @@ export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
       resetForm();
     } catch (error: any) {
       setstatus(Status.notStarted);
-      console.log(error);
       CustomModals.showCustomModal(
         'Ups! Error no esperado',
         'error',
         error.message
       );
+      throw new Error(`Ups! Error no esperado ${error}`)
     }
   };
   const onClosedModal = () => {
