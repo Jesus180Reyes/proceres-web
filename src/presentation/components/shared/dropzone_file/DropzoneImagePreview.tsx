@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, Suspense, useState } from 'react';
 import Modal from 'react-responsive-modal';
 
 interface Props {
@@ -23,7 +23,10 @@ export const DropzoneImagePreview: FC<Props> = ({ filePreview, name }) => {
         </div>
       </div>
       <Modal center open={isOpen} onClose={() => setisOpen(!isOpen)}>
-        <img className="rounded" src={filePreview ?? ''} alt={name ?? ''} />
+       <Suspense fallback={<h1>Cargando...</h1>}>
+       <img className="rounded" src={filePreview ?? ''} alt={name ?? ''} />
+
+       </Suspense>
       </Modal>
     </>
   );
