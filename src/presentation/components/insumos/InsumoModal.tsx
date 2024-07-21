@@ -39,7 +39,7 @@ export const InsumoModal: FC<Props> = ({ isOpen, onCloseModal }) => {
         'error',
         error.message
       );
-      throw new Error(`Ups! Error no esperado ${error}`)
+      throw new Error(`Ups! Error no esperado ${error}`);
     }
   };
   const onClosedModal = () => {

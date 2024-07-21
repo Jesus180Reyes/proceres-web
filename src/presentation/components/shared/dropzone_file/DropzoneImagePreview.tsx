@@ -23,10 +23,9 @@ export const DropzoneImagePreview: FC<Props> = ({ filePreview, name }) => {
         </div>
       </div>
       <Modal center open={isOpen} onClose={() => setisOpen(!isOpen)}>
-       <Suspense fallback={<h1>Cargando...</h1>}>
-       <img className="rounded" src={filePreview ?? ''} alt={name ?? ''} />
-
-       </Suspense>
+        <Suspense fallback={<h1>Cargando...</h1>}>
+          <img className="rounded" src={filePreview ?? ''} alt={name ?? ''} />
+        </Suspense>
       </Modal>
     </>
   );

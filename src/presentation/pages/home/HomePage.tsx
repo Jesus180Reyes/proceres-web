@@ -24,15 +24,15 @@ const HomePage = memo(() => {
   const { categories } = useCategoria();
   const [dates, setdates] = useState([null, null]);
   const { users } = useUser();
-  const { inventarioResponse, status, hasMore, page, limit,getData } = useInventario({
-    filters: {
-      categoria: filterCategory?.id,
-      startDate: dates[0],
-      endDate: dates[1],
-      user: filterUser?.id,
-    },
-  },
-);
+  const { inventarioResponse, status, hasMore, page, limit, getData } =
+    useInventario({
+      filters: {
+        categoria: filterCategory?.id,
+        startDate: dates[0],
+        endDate: dates[1],
+        user: filterUser?.id,
+      },
+    });
   return (
     <>
       <div className="home-container">
@@ -61,16 +61,15 @@ const HomePage = memo(() => {
             onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
           />
         </div>
-        <InfiniteScroll 
-        dataLength={inventarioResponse.length}
-        next={ async() => await getData( page,limit + 5)}
-        hasMore={hasMore}
-        loader={<h4>Cargando...</h4>}
-        >
-        <CustomTableComponent
-          isLoading={status === Status.inProgress && !hasMore}
-          items={inventarioResponse}
-        />
+        <InfiniteScroll
+          dataLength={inventarioResponse.length}
+          next={async () => await getData(page, limit + 5)}
+          hasMore={hasMore}
+          loader={<h4>Cargando...</h4>}>
+          <CustomTableComponent
+            isLoading={status === Status.inProgress && !hasMore}
+            items={inventarioResponse}
+          />
         </InfiniteScroll>
       </div>
       <PdfModal

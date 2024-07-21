@@ -42,7 +42,7 @@ const LoginPage = () => {
         'error',
         error.response.data.msg
       );
-      throw new Error(`Ups! Error no esperado ${error}`)
+      throw new Error(`Ups! Error no esperado ${error}`);
     }
   };
   const onSubmit = async (e: any) => {
