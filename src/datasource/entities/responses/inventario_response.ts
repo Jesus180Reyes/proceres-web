@@ -1,6 +1,10 @@
 export interface InventarioResponse {
   ok: boolean;
-  inventario: Inventario[];
+  page: number;
+limit: number;
+hasMore: boolean;
+inventario: Inventario[];
+totalPages: number;
 }
 
 export interface Inventario {
