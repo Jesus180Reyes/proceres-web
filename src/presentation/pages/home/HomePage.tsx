@@ -11,7 +11,9 @@ import { HomeFIlterView } from '../../components/home/HomeFIlterView';
 import { Item } from '../../components/shared/dropdown/CustomDropdownComponent';
 import { useCategoria } from '../../hooks/categoria/useCategoria';
 import { useUser } from '../../hooks/users/useUser';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import '../../../assets/index.less';
+import Pagination from 'rc-pagination';
+
 
 const HomePage = memo(() => {
   const [isPdfModalOpen, setisPdfModalOpen] = useState<boolean>(false);
@@ -24,7 +26,7 @@ const HomePage = memo(() => {
   const { categories } = useCategoria();
   const [dates, setdates] = useState([null, null]);
   const { users } = useUser();
-  const { inventarioResponse, status, hasMore, page, limit, getData } =
+  const { inventarioResponse, status, page ,totalCount, onNextPage} =
     useInventario({
       filters: {
         categoria: filterCategory?.id,
@@ -33,6 +35,7 @@ const HomePage = memo(() => {
         user: filterUser?.id,
       },
     });
+    
   return (
     <>
       <div className="home-container">
@@ -61,16 +64,24 @@ const HomePage = memo(() => {
             onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
           />
         </div>
-        <InfiniteScroll
-          dataLength={inventarioResponse.length}
-          next={async () => await getData(page, limit + 5)}
-          hasMore={hasMore}
-          loader={<h4>Cargando...</h4>}>
+       
+       <div className='mt-10'>
+       <Pagination showTotal={(total, range) =>
+        `${range[0]} - ${range[1]} de ${total} insumos`
+      }   current={page} onChange={onNextPage}  total={totalCount}  align='end' />
+        
+       </div>
+        
           <CustomTableComponent
-            isLoading={status === Status.inProgress && !hasMore}
+            isLoading={status === Status.inProgress}
             items={inventarioResponse}
           />
-        </InfiniteScroll>
+      <div className='mt-10 mb-5'>
+       <Pagination showTotal={(total, range) =>
+        `${range[0]} - ${range[1]} de ${total} insumos`
+      }   current={page} onChange={onNextPage}  total={totalCount}  align='end' />
+        
+       </div>
       </div>
       <PdfModal
         isOpen={isPdfModalOpen}

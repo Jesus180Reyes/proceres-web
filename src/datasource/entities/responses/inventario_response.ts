@@ -3,6 +3,7 @@ export interface InventarioResponse {
   page: number;
   limit: number;
   hasMore: boolean;
+  totalCount: number;
   inventario: Inventario[];
   totalPages: number;
 }

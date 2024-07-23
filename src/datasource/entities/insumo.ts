@@ -1,7 +1,13 @@
 import { Usuario } from './responses/inventario_response';
 export interface InsumoResponse {
   ok: boolean;
+  limit: number;
+  offset: number;
+  page: number;
+  totalCount: number;
+  hasMore: boolean;
   insumos: Insumo[];
+  totalPages: number;
 }
 export interface Insumo {
   id: number;

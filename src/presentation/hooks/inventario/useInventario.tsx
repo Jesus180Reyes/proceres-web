@@ -15,28 +15,27 @@ export const useInventario = (params?: any) => {
   const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>(
     []
   );
+  const [totalCount, settotalCount] = useState<number>(0)
   const [page, setpage] = useState<number>(0);
   const [limit] = useState<number>(10);
   // const memoizedPage = useMemo(() => page, [JSON.stringify(page)]);
+  const memoizedPage =  JSON.stringify(page);
+  
   const memoizedParams = JSON.stringify(params);
 
   const getData = useCallback(
-    async (pageToGo = 1, limitToGo = 10): Promise<InventarioResponse> => {
-      setpage(prevPage => prevPage + 1);
+    async (): Promise<InventarioResponse> => {
       try {
         setstatus(Status.inProgress);
         const resp = await Api.instance.post<InventarioResponse>(
-          `/api/inventario/getAll?page=${pageToGo}&limit=${limitToGo}`,
+          `/api/inventario/getAll?page=${page}&limit=${limit}`,
           params
         );
         const data = resp.data;
 
         setHasMore(data.hasMore);
-        setinventarioResponse(datosAnteriores => [
-          ...datosAnteriores,
-          ...data.inventario,
-        ]);
-        console.log(resp.data);
+        settotalCount(data.totalCount);
+        setinventarioResponse(data.inventario);
         setstatus(Status.done);
         return data;
       } catch (error: any) {
@@ -49,8 +48,11 @@ export const useInventario = (params?: any) => {
         throw new Error(error.message);
       }
     },
-    [memoizedParams]
+    [memoizedParams, memoizedPage]
   );
+  const onNextPage = (page: number) => {
+    setpage(page);   
+  }
   useEffect(() => {
     getData();
   }, [getData]);
@@ -62,8 +64,10 @@ export const useInventario = (params?: any) => {
     hasMore,
     page,
     limit,
+    totalCount,
 
     // * Metodos
     getData,
+    onNextPage
   };
 };
