@@ -7,9 +7,9 @@ import { Insumo, InsumoResponse } from '../../../datasource/entities/insumo';
 import { Status } from '../../../datasource/entities/status';
 interface Params {
   startDate: any;
-endDate: any ;
-user: number | undefined
-page: number;
+  endDate: any;
+  user: number | undefined;
+  page: number;
 }
 export const useInsumo = (params?: Params) => {
   const [status, setstatus] = useState<Status>(Status.notStarted);
@@ -18,8 +18,8 @@ export const useInsumo = (params?: Params) => {
   const memoizedParams = useMemo(() => params, [JSON.stringify(params)]);
   const [limit] = useState<number>(10);
   const [totalPages, settotalPages] = useState<number>(0);
-  const [totalCount, settotalCount] = useState<number>(0)
-  const getData =  useCallback(async () => {
+  const [totalCount, settotalCount] = useState<number>(0);
+  const getData = useCallback(async () => {
     try {
       setstatus(Status.inProgress);
       const resp = await Api.instance.get<InsumoResponse>(`/api/insumo`, {
@@ -27,12 +27,12 @@ export const useInsumo = (params?: Params) => {
       });
 
       const data = resp.data;
-     
-        sethasMore(data.hasMore);
-        settotalPages(data.totalPages);
-        settotalCount(data.totalCount);
-        setInsumosResponse(data.insumos);
-        setstatus(Status.done);
+
+      sethasMore(data.hasMore);
+      settotalPages(data.totalPages);
+      settotalCount(data.totalCount);
+      setInsumosResponse(data.insumos);
+      setstatus(Status.done);
 
       return data;
     } catch (error: any) {
@@ -44,15 +44,14 @@ export const useInsumo = (params?: Params) => {
       setstatus(Status.notStarted);
       throw new Error(`Ups! Error inesperado ${error.message}`);
     }
-  },[memoizedParams]);
+  }, [memoizedParams]);
 
   useEffect(() => {
     getData();
     return () => {
       sethasMore(false);
       setInsumosResponse([]);
-
-    }
+    };
   }, [getData]);
 
   return {

@@ -15,44 +15,41 @@ export const useInventario = (params?: any) => {
   const [inventarioResponse, setinventarioResponse] = useState<Inventario[]>(
     []
   );
-  const [totalCount, settotalCount] = useState<number>(0)
+  const [totalCount, settotalCount] = useState<number>(0);
   const [page, setpage] = useState<number>(0);
   const [limit] = useState<number>(10);
   // const memoizedPage = useMemo(() => page, [JSON.stringify(page)]);
-  const memoizedPage =  JSON.stringify(page);
-  
+  const memoizedPage = JSON.stringify(page);
+
   const memoizedParams = JSON.stringify(params);
 
-  const getData = useCallback(
-    async (): Promise<InventarioResponse> => {
-      try {
-        setstatus(Status.inProgress);
-        const resp = await Api.instance.post<InventarioResponse>(
-          `/api/inventario/getAll?page=${page}&limit=${limit}`,
-          params
-        );
-        const data = resp.data;
+  const getData = useCallback(async (): Promise<InventarioResponse> => {
+    try {
+      setstatus(Status.inProgress);
+      const resp = await Api.instance.post<InventarioResponse>(
+        `/api/inventario/getAll?page=${page}&limit=${limit}`,
+        params
+      );
+      const data = resp.data;
 
-        setHasMore(data.hasMore);
-        settotalCount(data.totalCount);
-        setinventarioResponse(data.inventario);
-        setstatus(Status.done);
-        return data;
-      } catch (error: any) {
-        setstatus(Status.notStarted);
-        CustomModals.showCustomModal(
-          'Ups! Error inesperado',
-          'error',
-          error.message
-        );
-        throw new Error(error.message);
-      }
-    },
-    [memoizedParams, memoizedPage]
-  );
+      setHasMore(data.hasMore);
+      settotalCount(data.totalCount);
+      setinventarioResponse(data.inventario);
+      setstatus(Status.done);
+      return data;
+    } catch (error: any) {
+      setstatus(Status.notStarted);
+      CustomModals.showCustomModal(
+        'Ups! Error inesperado',
+        'error',
+        error.message
+      );
+      throw new Error(error.message);
+    }
+  }, [memoizedParams, memoizedPage]);
   const onNextPage = (page: number) => {
-    setpage(page);   
-  }
+    setpage(page);
+  };
   useEffect(() => {
     getData();
   }, [getData]);
@@ -68,6 +65,6 @@ export const useInventario = (params?: any) => {
 
     // * Metodos
     getData,
-    onNextPage
+    onNextPage,
   };
 };

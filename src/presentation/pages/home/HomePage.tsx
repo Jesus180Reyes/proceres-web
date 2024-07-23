@@ -14,7 +14,6 @@ import { useUser } from '../../hooks/users/useUser';
 import '../../../assets/index.less';
 import Pagination from 'rc-pagination';
 
-
 const HomePage = memo(() => {
   const [isPdfModalOpen, setisPdfModalOpen] = useState<boolean>(false);
 
@@ -26,7 +25,7 @@ const HomePage = memo(() => {
   const { categories } = useCategoria();
   const [dates, setdates] = useState([null, null]);
   const { users } = useUser();
-  const { inventarioResponse, status, page ,totalCount, onNextPage} =
+  const { inventarioResponse, status, page, totalCount, onNextPage } =
     useInventario({
       filters: {
         categoria: filterCategory?.id,
@@ -35,7 +34,7 @@ const HomePage = memo(() => {
         user: filterUser?.id,
       },
     });
-    
+
   return (
     <>
       <div className="home-container">
@@ -64,24 +63,34 @@ const HomePage = memo(() => {
             onClick={() => setisPdfModalOpen(!isPdfModalOpen)}
           />
         </div>
-       
-       <div className='mt-10'>
-       <Pagination showTotal={(total, range) =>
-        `${range[0]} - ${range[1]} de ${total} insumos`
-      }   current={page} onChange={onNextPage}  total={totalCount}  align='end' />
-        
-       </div>
-        
-          <CustomTableComponent
-            isLoading={status === Status.inProgress}
-            items={inventarioResponse}
+
+        <div className="mt-10">
+          <Pagination
+            showTotal={(total, range) =>
+              `${range[0]} - ${range[1]} de ${total} insumos`
+            }
+            current={page}
+            onChange={onNextPage}
+            total={totalCount}
+            align="end"
           />
-      <div className='mt-10 mb-5'>
-       <Pagination showTotal={(total, range) =>
-        `${range[0]} - ${range[1]} de ${total} insumos`
-      }   current={page} onChange={onNextPage}  total={totalCount}  align='end' />
-        
-       </div>
+        </div>
+
+        <CustomTableComponent
+          isLoading={status === Status.inProgress}
+          items={inventarioResponse}
+        />
+        <div className="mt-10 mb-5">
+          <Pagination
+            showTotal={(total, range) =>
+              `${range[0]} - ${range[1]} de ${total} insumos`
+            }
+            current={page}
+            onChange={onNextPage}
+            total={totalCount}
+            align="end"
+          />
+        </div>
       </div>
       <PdfModal
         isOpen={isPdfModalOpen}

@@ -19,24 +19,23 @@ import { capitalize } from '../../../config/extensions/string_extension';
 import { PdfInsumoModal } from '../../components/insumos/PdfInsumoModal';
 import Pagination from 'rc-pagination/lib/Pagination';
 
-
 const InsumosPage = () => {
   const [dates, setdates] = useState([null, null]);
 
   const [isOpen, setisOpen] = useState<boolean>(false);
   const [filterUser, setFilterUser] = useState<Item>();
   const [page, setpage] = useState<number>(1);
-  const { insumosResponse, status,totalCount  } = useInsumo({
+  const { insumosResponse, status, totalCount } = useInsumo({
     startDate: dates[0],
     endDate: dates[1],
     user: filterUser?.id,
-    page: page
+    page: page,
   });
   const { users } = useUser();
   const [isPdfModal, setisPdfModal] = useState<boolean>(false);
   const onNextPage = (page: number) => {
     setpage(page);
-  }
+  };
   return (
     <>
       <div className="home-container">
@@ -96,20 +95,32 @@ const InsumosPage = () => {
             onClick={() => setisPdfModal(!isPdfModal)}
           />
         </div>
-       <div className='mt-10 mr-5'>
-       <Pagination showTotal={(total, range) =>
-        `${range[0]} - ${range[1]} de ${total} insumos`
-      }   current={page} onChange={onNextPage}  total={totalCount}  align='end' />
-       </div>
+        <div className="mt-10 mr-5">
+          <Pagination
+            showTotal={(total, range) =>
+              `${range[0]} - ${range[1]} de ${total} insumos`
+            }
+            current={page}
+            onChange={onNextPage}
+            total={totalCount}
+            align="end"
+          />
+        </div>
         <TableInsumos
           isLoading={status === Status.inProgress}
           items={insumosResponse}
         />
-       <div className='mt-5 mr-5 mb-4'>
-       <Pagination showTotal={(total, range) =>
-        `${range[0]} - ${range[1]} de ${total} insumos`
-      }   current={page} onChange={onNextPage}  total={totalCount}  align='end' />
-       </div>
+        <div className="mt-5 mr-5 mb-4">
+          <Pagination
+            showTotal={(total, range) =>
+              `${range[0]} - ${range[1]} de ${total} insumos`
+            }
+            current={page}
+            onChange={onNextPage}
+            total={totalCount}
+            align="end"
+          />
+        </div>
       </div>
       <InsumoModal isOpen={isOpen} onCloseModal={() => setisOpen(!isOpen)} />
       <PdfInsumoModal
